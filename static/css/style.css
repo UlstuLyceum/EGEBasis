@@ -1,0 +1,394 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300i,400,400i,500,600&display=swap&subset=cyrillic');
+
+html {
+    color: #25252d;
+    overflow-x: hidden;
+    font-family: 'Montserrat', sans-serif;
+}
+.login-page-header, .signup-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 50px 0 50px;
+}
+.login-page-info, .signup-page-info {
+    display: flex;
+    align-items: center;
+}
+.login-page-info .slogan, .signup-page-info .slogan {
+    font-size: 17px;
+    font-weight: 500;
+    margin: 0 0 0 50px;
+}
+.login-page-content, .signup-page-content {
+    display: flex;
+    justify-content: center;
+}
+.signup-button, .login-button {
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    transition: ease 300ms;
+    color: #25252d;
+    font-size: 13px;
+}
+.signup-button:hover, .login-button:hover {
+    opacity: .75;
+}
+.logo {
+    height: 37px;
+}
+.login-page-illustration, .signup-page-illustration {
+    z-index: -2;
+    left: 0;
+    position: absolute;
+    width: 800px;
+}
+.login-window__wrapper {
+    z-index: -1;
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.login-window {
+    background-color: #25252d;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    padding: 35px 50px;
+    margin: 0 50px 0 0;
+}
+.login-window-label__wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+}
+.login-window-label {
+    color: #fff;
+    font-size: 25px;
+}
+.login-window__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0 0 0;
+}
+.login-window-form {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 100px;
+    width: 365px;
+    height:42px;
+    padding: 0 0 0 10px;
+}
+.login-window-form-icon {
+    width: 16px;
+}
+.login-window-form-input {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-weight: 500;
+    width: 92%;
+    height: 32px;
+    margin: 0 0 0 5px;
+}
+.password-form {
+    margin: 15px 0 0 0;
+}
+.password-forget {
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: 300;
+    color: #fff;
+    font-size: 13px;
+}
+.login-via-networks__wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin: 15px 0 0 0;
+}
+.login-via-networks__label {
+    font-weight: 300;
+    color: #fff;
+    font-size: 13px;
+    opacity: .5;
+}
+.login-via-networks__content {
+    display: flex;
+    justify-content: center;
+}
+.login-via-networks__element {
+    margin: 0 7px;
+    cursor: pointer;
+    border-radius: 100px;
+    border: #fff 2px solid;
+    transition: ease 300ms;
+    width: 30px;
+}
+.login-via-networks__element:hover {
+    border: #955bff 2px dotted;
+}
+.login-window-controls {
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 50px 0 0 0;
+}
+.login-window-login-button {
+    text-decoration: none;
+    transition: ease 300ms;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    border-radius: 100px;
+    background-color: #955bff;
+    height: 42px;
+    padding: 0 55px;
+}
+.login-window-login-button:hover {
+    color: #955bff;
+    background-color: #fff;
+}
+.signup-window__wrapper {
+    z-index: -1;
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.signup-window {
+    background-color: #25252d;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    border-radius: 25px;
+    padding: 35px 50px;
+    margin: 0 50px 0 0;
+}
+.signup-window-label__wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+}
+.signup-window-label {
+    color: #fff;
+    font-size: 25px;
+}
+.signup-window__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0 0 0;
+}
+.signup-window-form {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 100px;
+    width: 365px;
+    height:42px;
+    padding: 0 0 0 10px;
+}
+.signup-window-form-icon {
+    width: 16px;
+}
+.signup-window-form-input {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-weight: 500;
+    width: 92%;
+    height: 32px;
+    margin: 0 0 0 5px;
+}
+.signup-window-continue-button, .signup-window-end-signup-button {
+    transition: ease 300ms;
+    cursor: pointer;
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 13px;
+    border-radius: 100px;
+    background-color: #955bff;
+    height: 42px;
+    width: 100%;
+    margin: 50px 0 0 0;
+}
+.signup-window-continue-button:hover, .signup-window-end-signup-button:hover {
+    color: #955bff;
+    background-color: #fff;
+}
+.signup-window-form.login-form {
+    margin: 15px 0 0 0;
+}
+.signup-window-text {
+    font-size: 15px;
+}
+.password-reestablish-window__wrapper {
+    top: -9999px;
+    z-index: -3;
+    opacity: 0;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.password-reestablish-window {
+    z-index: 3;
+    background-color: #955bff;
+    border-radius: 20px;
+    width: 300px;
+    height: 200px;
+    padding: 25px 25px 50px 25px;
+}
+.password-reestablish-window-pointer {
+    z-index: 2;
+    position: absolute;
+    background-color: #955bff;
+    margin: 5px 0 0 0;
+    width: 25px;
+    height: 25px;
+    transform: rotate(45deg);
+}
+.password-reestablish-window-text {
+    color: #fff;
+    font-size: 13px;
+}
+.password-reestablish-window-email-form {
+    background-color: #25252d;
+    color: #fff;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0 0 0 15px;
+    border: none;
+    width: calc(100% - 15px);
+    height: 35px;
+    margin: 50px 0 0 0;
+}
+.password-reestablish-window-button {
+    cursor: pointer;
+    transition: ease 300ms;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #25252d;
+    font-size: 13px;
+    border-radius: 100px;
+    width: 100%;
+    height: 35px;
+    margin: 10px 0 0 0;
+}
+.password-reestablish-window-button:hover {
+    color: #955bff;
+    background-color: #fff;
+}
+.base2-menu {
+    position: fixed;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+.base2-header {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    width: calc(100% - 300px);
+    height: 125px;
+    padding: 0 50px;
+}
+.base2-header__content{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.base2-header-controls {
+    display: flex;
+}
+.base2-header-controls__element {
+    cursor: pointer;
+    text-decoration: none;
+    color: #25252d;
+    transition: ease 300ms;
+    font-size: 12px;
+    margin: 10px 30px;
+}
+.base2-header-controls__element:hover {
+    opacity: .75;
+}
+.base2-header-controls__element.active {
+    background-color: #955bff;
+    color: #fff;
+    border-radius: 100px;
+    padding: 10px 20px;
+    margin: 0 10px;
+}
+.base2-header-controls__element.active:hover {
+    opacity: 1;
+}
+.base2-header-label {
+    font-size: 20px;
+    font-weight: 600;
+}
+.base2-aside {
+    background-color: #25252d;
+    width: 150px;
+    height: 100%;
+}
+.base2-content {
+    margin: 125px 0 0 200px;
+    display: flex;
+    justify-content: center;
+}
+.base2-aside__content {
+    height: calc(100% - 100px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 0;
+}
+.base2-aside-controls {
+    display: flex;
+    flex-direction: column;
+}
+.base2-aside-logo {
+    border: 1px solid #fff;
+    border-radius: 100px;
+    width: 30px;
+}
+.base2-aside-controls__element, .base2-aside-exit-button {
+    transition: ease 300ms;
+    cursor: pointer;
+    width: 30px;
+    margin: 20px;
+}
+.base2-aside-controls__element:hover, .base2-aside-exit-button:hover {
+    opacity: .75;
+}
