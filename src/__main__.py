@@ -35,4 +35,4 @@ def app_logged_in(subj_name, mode_name):
         )
 
 
-app.run(port=8000)
+app.run(port=8000)  # TODO put port to config file
