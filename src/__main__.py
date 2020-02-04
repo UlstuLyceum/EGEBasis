@@ -2,6 +2,11 @@ from os import environ
 
 from flask import Flask, redirect, render_template, url_for
 
+try:
+    import src.local_config as config
+except ImportError:
+    import src.config as config
+
 app = Flask(__name__)
 
 
@@ -37,4 +42,4 @@ def app_logged_in(subj_name, mode_name):
         )
 
 
-app.run(host="0.0.0.0", port=environ.get("PORT", 8000))  # TODO put port to config file
+app.run(host="0.0.0.0", port=config.FLASK_PORT)  # TODO put port to config file
