@@ -10,7 +10,12 @@ def index():
 
 @app.route("/login")
 def login():
-    return render_template("../templates/login.html", title="Войти")
+    return render_template("login.html", title="Войти")
+
+
+@app.route("/signup")
+def signup():
+    return render_template("signup.html", title="Зарегистрироваться")
 
 
 app.run(port=8000)
