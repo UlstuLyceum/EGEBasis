@@ -1,0 +1,50 @@
+{% extends "base1.html" %}
+
+{% block header %}
+<div class="login-page-info">
+    <a href="/"><img class="logo" src="static/img/logo.png"></a>
+    <p class="slogan">Готовься к ЕГЭ с удовольствием!</p>
+</div>
+<a class="signup-button" href="/signup">Зарегистрироваться</a>
+{% endblock %}
+
+{% block content %}
+<img class="login-page-illustration" src="static/img/education_illustration.png">
+<div class="login-window__wrapper">
+    <div class="login-window">
+        <div class="login-window-label__wrapper">
+            <p class="login-window-label">Вход</p>
+        </div>
+        <div class="login-window__content">
+            <div class="login-window-form login-form">
+                <img class="login-window-form-icon" src="static/img/email_icon.png">
+                <input class="login-window-form-input login-form" type="text" name="login" placeholder="Email">
+            </div>
+            <div class="login-window-form password-form">
+                <img class="login-window-form-icon" src="static/img/password_icon.png">
+                <input class="login-window-form-input" type="password" name="password" placeholder="Пароль">
+            </div>
+            <div class="login-via-networks__wrapper">
+                <div class="login-via-networks__label">Войти через соц-сети:</div>
+                <div class="login-via-networks__content">
+                    <img class="login-via-networks__element login-via-vk" src="static/img/vk_logo.png">
+                    <img class="login-via-networks__element login-via-google" src="static/img/google_logo.png">
+                    <img class="login-via-networks__element login-via-yandex" src="static/img/yandex_logo.png">
+                </div>
+            </div>
+            <div class="login-window-controls">
+                <div class="password-forget prwe" onclick="passwordReestablish(this)">Забыли пароль?</div>
+                <a class="login-window-login-button" href="/">Войти</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="password-reestablish-window__wrapper prwe">
+    <div class="password-reestablish-window prwe">
+        <p class="password-reestablish-window-text prwe">Введите e-mail адрес, который вы указали при регистрации, либо тот, к которому привязана соц-сеть через которую вы авторизовались и нажмите отправить.<br><br>Далее следуйте инструкциям в письме, которое придёт на указанную почту.</p>
+        <input class="password-reestablish-window-email-form prwe" type="email" name="reestablishEmail" placeholder="Email">
+        <div class="password-reestablish-window-button prwe" onclick="sendReestablishEmail()">Отправить</div>
+    </div>
+    <div class="password-reestablish-window-pointer prwe"></div>
+</div>
+{% endblock %}
