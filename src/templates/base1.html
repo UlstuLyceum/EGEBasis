@@ -2,11 +2,11 @@
 <html lang="ru" class="{{ self._TemplateReference__context.name[:-5] }}-html">
 <head>
     <meta charset="utf-8">
-    <link type="text/css" rel="stylesheet" href="static/css/reset.css">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/reset.css') }}">
     <title>{{ title }}</title>
-    <link rel="shortcut icon" href="static/img/favicon.ico">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="static/js/index.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
 </head>
 <body>
 <div class="header {{ self._TemplateReference__context.name[:-5] }}-page-header">{% block header %}{% endblock %}</div>
@@ -14,6 +14,6 @@
 <div class="content {{ self._TemplateReference__context.name[:-5] }}-page-content">{% block content %}{% endblock %}</div>
 <div class="footer {{ self._TemplateReference__context.name[:-5] }}-page-footer">{% block footer %}{% endblock %}</div>
 
-<link type="text/css" rel="stylesheet" href="static/css/style.css">
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </body>
 </html>

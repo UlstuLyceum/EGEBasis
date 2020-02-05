@@ -9,7 +9,6 @@ install:
 script:
   - black -q --check src
   - isort -rc src
-  - pylint -E src
 
 after_success:
   - pylint src
