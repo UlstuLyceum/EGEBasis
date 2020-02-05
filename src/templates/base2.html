@@ -28,7 +28,7 @@
                     <img class="base2-aside-controls__element" src="{{ url_for('static', filename='img/settings_icon.png') }}">
                 </a>
             </div>
-            <a class="base2-aside-exit-button__wrapper" href="/login">
+            <a class="base2-aside-exit-button__wrapper" href="{{ url_for('auth.logout') }}">
                 <img class="base2-aside-exit-button" src="{{ url_for('static', filename='img/exit_icon.png') }}">
             </a>
         </div>
