@@ -1,6 +1,6 @@
 from flask import Blueprint, url_for
 from werkzeug.utils import redirect
-
+from bson.objectid import ObjectId
 from src.lib import count_percentage_on_task, get_status_on_task, render, get_current_user
 from src.models import Subject, TaskType, Task, TaskLink, Text
 
@@ -53,10 +53,13 @@ def task_tasks(subj_name, task_id):
     raw_tasks = Task.find({"task_type": task_type.id})
     for task in raw_tasks:
         tl = TaskLink.find_one({"task": task.id, "user": user.id})
-        text = Text.find_one({"id": task.text})
+        text = None
+        if task.text is not None:
+            text = task.text.fetch().body
+            print(text)
         tasks.append({
             "body": eval('"' + task.body + '"'),
-            "text": None if not text else text.body,
+            "text": text,
             "done": tl.done if tl else False,
             "answer": task.answer
         })

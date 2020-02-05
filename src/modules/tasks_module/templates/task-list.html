@@ -6,7 +6,7 @@
             <p><pre>{{ task["body"] }}</pre></p>
             {% if task["text"] != None %}
                 <p>Текст к заданию</p>
-                {{ task["text"] }}
+            <u><b><i>{{ task["text"] }}</i></b></u>
             {% endif %}
             <p>Выполнено: {{ task["done"] }}</p>
             <p>Ответ(типо скрытый): {{ task["answer"] }}</p>
