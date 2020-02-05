@@ -29,8 +29,7 @@ app.register_blueprint(auth)
 
 subject_list = [
     {"label": "Русский", "name": "russian"},
-    {"label": "Математика", "name": "math"},
-    {"label": "Информатика", "name": "it"},
+    {"label": "Математика", "name": "math"}
 ]
 
 tasks_list = [
@@ -59,7 +58,7 @@ tasks_list = [
     {"number": 23, "compete_percentage": 74, "points": 1, "status": 3},
     {"number": 24, "compete_percentage": 35, "points": 1, "status": 0},
     {"number": 25, "compete_percentage": 26, "points": 1, "status": 1},
-    {"number": 26, "compete_percentage": 27, "points": 4, "status": 0},
+    {"number": 26, "compete_percentage": 27, "points": 4, "status": 0}
 ]
 
 
