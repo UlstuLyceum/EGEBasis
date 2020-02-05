@@ -2,23 +2,29 @@
 
 {% block header %}
 <div class="login-page-info">
-    <a href="/"><img class="logo" src="static/img/logo.png"></a>
+    <a href="{{ url_for("index") }}"><img class="logo" src="{{ url_for('static', filename='img/logo.png') }}"></a>
     <p class="slogan">Готовься к ЕГЭ с удовольствием!</p>
 </div>
-<a class="signup-button" href="/signup">Зарегистрироваться</a>
+<a class="signup-button" href="{{ url_for("auth.signup") }}">Зарегистрироваться</a>
 {% endblock %}
 
 {% block content %}
-<img class="login-page-illustration" src="static/img/education_illustration.png">
-<div class="login-window__wrapper">
+{% if error %}
+    Ошибка, нет такого пользователя и т. д.
+{% endif %}
+{% if not_confirmed %}
+    Вы не подтвердили свою почту
+{% endif %}
+<img class="login-page-illustration" src="{{ url_for('static', filename='img/education_illustration.png') }}">
+<form action="{{ url_for("auth.login") }}" method="post" class="login-window__wrapper">
     <div class="login-window">
         <div class="login-window-label__wrapper">
             <p class="login-window-label">Вход</p>
         </div>
         <div class="login-window__content">
             <div class="login-window-form login-form">
-                <img class="login-window-form-icon" src="static/img/email_icon.png">
-                <input class="login-window-form-input login-form" type="text" name="login" placeholder="Email">
+                <img class="login-window-form-icon" src="{{ url_for('static', filename='img/email_icon.png') }}">
+                <input class="login-window-form-input login-form" type="text" name="email" placeholder="Email">
             </div>
             <div class="login-window-form password-form">
                 <img class="login-window-form-icon" src="static/img/password_icon.png">
@@ -27,18 +33,18 @@
             <div class="login-via-networks__wrapper">
                 <div class="login-via-networks__label">Войти через соц-сети:</div>
                 <div class="login-via-networks__content">
-                    <img class="login-via-networks__element login-via-vk" src="static/img/vk_logo.png">
-                    <img class="login-via-networks__element login-via-google" src="static/img/google_logo.png">
-                    <img class="login-via-networks__element login-via-yandex" src="static/img/yandex_logo.png">
+                    <img class="login-via-networks__element login-via-vk" src="{{ url_for('static', filename='img/vk_logo.png') }}">
+                    <img class="login-via-networks__element login-via-google" src="{{ url_for('static', filename='img/google_logo.png') }}">
+                    <img class="login-via-networks__element login-via-yandex" src="{{ url_for('static', filename='img/yandex_logo.png') }}">
                 </div>
             </div>
             <div class="login-window-controls">
                 <div class="password-forget prwe" onclick="passwordReestablish(this)">Забыли пароль?</div>
-                <a class="login-window-login-button" href="/">Войти</a>
+                <input class="login-window-login-button" type="submit" value="Войти">
             </div>
         </div>
     </div>
-</div>
+</form>
 <div class="password-reestablish-window__wrapper prwe">
     <div class="password-reestablish-window prwe">
         <p class="password-reestablish-window-text prwe">Введите e-mail адрес, который вы указали при регистрации, либо тот, к которому привязана соц-сеть через которую вы авторизовались и нажмите отправить.<br><br>Далее следуйте инструкциям в письме, которое придёт на указанную почту.</p>
