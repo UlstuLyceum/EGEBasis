@@ -1,0 +1,16 @@
+{% extends "base2.html" %}
+
+{% block content %}
+    {% for task in tasks %}
+        <div>
+            <p>{{ task["body"] }}</p>
+            {% if task["text"] != None %}
+                <p>Текст к заданию</p>
+                {{ task["text"] }}
+            {% endif %}
+            <p>Выполнено: {{ task["done"] }}</p>
+            <p>Ответ(типо скрытый): {{ task["answer"] }}</p>
+        </div>
+        <hr>
+    {% endfor %}
+{% endblock %}

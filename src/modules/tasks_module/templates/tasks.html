@@ -25,7 +25,7 @@
     </div>
     <div class="all-tasks-block">
         {% for task in tasks_list %}
-            <a class="task-block" href="../{{ current_subj }}/task/{{ task["number"] }}">
+            <a class="task-block" href="{{ url_for('tasks.task_theory', subj_name=current_subj, task_id=task['number']) }}">
                 <div class="task-block-label">Задание {{ task["number"] }}</div>
                 <div class="task-block-progress">
                     <div class="task-block-progress-line__wrapper">
