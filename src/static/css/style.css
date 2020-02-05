@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300i,400,400i,500,600&display=swap&subset=cyrillic');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300б300i,400,400i,500,600&display=swap&subset=cyrillic');
 
 html {
     color: #25252d;
@@ -135,6 +135,7 @@ html {
     border: #fff 2px solid;
     transition: ease 300ms;
     width: 30px;
+    height: 30px;
 }
 .login-via-networks__element:hover {
     border: #955bff 2px dotted;
@@ -306,19 +307,15 @@ html {
     color: #955bff;
     background-color: #fff;
 }
-.base2-menu {
-    position: fixed;
-    display: flex;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-}
 .base2-header {
+    z-index: 3;
+    position: fixed;
+    top: 0;
+    left: 150px;
     display: flex;
     align-items: center;
     background-color: #fff;
-    width: calc(100% - 300px);
+    width: calc(100% - 250px);
     height: 125px;
     padding: 0 50px;
 }
@@ -357,14 +354,14 @@ html {
     font-weight: 600;
 }
 .base2-aside {
+    z-index: 3;
+    top: 0;
+    left: 0;
+    position: fixed;
     background-color: #25252d;
-    width: 150px;
+    min-width: 150px;
+    max-width: 150px;
     height: 100%;
-}
-.base2-content {
-    margin: 125px 0 0 200px;
-    display: flex;
-    justify-content: center;
 }
 .base2-aside__content {
     height: calc(100% - 100px);
@@ -391,4 +388,114 @@ html {
 }
 .base2-aside-controls__element:hover, .base2-aside-exit-button:hover {
     opacity: .75;
+}
+.base2-content {
+    margin: 125px 50px 0 200px;
+}
+.all-tasks-block {
+    width: 100%;
+}
+.task-block {
+    transition: ease 300ms;
+    text-decoration: none;
+    color: #25252d;
+    outline: none!important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px;
+    width: calc(100% - 40px);
+}
+.task-block:hover {
+    border-radius: 15px;
+    border-bottom: none;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0, 0, 0, .2);
+}
+.task-block-label {
+    font-weight: 600;
+}
+.task-block-progress {
+    display: flex;
+    align-items: center;
+    margin: 0 0 -4px 0;
+}
+.task-block-progress-line__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 35vw;
+}
+.task-block-progress-line-back {
+    margin: 0 0 -7.5px 0;
+    background-color: #e4e4ed;
+    width: 100%;
+    border-radius: 100px;
+    height: 4px;
+}
+.task-block-progress-line-front {
+    background-color: #955bff;
+    border-radius: 100px;
+    height: 10px;
+}
+.task-block-progress-shower {
+    font-size: 13px;
+    font-weight: 600;
+    margin: -2.5px 0 0 10px;
+}
+.task-block-points {
+    font-weight: 500;
+    color: #babac3;
+    font-size: 13px;
+}
+.task-block-status {
+    width: 20px;
+}
+.status-change-window {
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    z-index: -2;
+    opacity: 0;
+}
+.status-change-window__content {
+    border-radius: 25px;
+    display: inline-block;
+    background-color: #25252d;
+    padding: 20px 35px;
+}
+.status-change-window-label {
+    font-size: 15px;
+    color: #fff;
+    font-weight: 500;
+    margin: 0 0 10px 0;
+}
+.status-change-window-block {
+    transition: ease 300ms;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 100px;
+    padding: 5px 10px;
+}
+.status-change-window-block:hover {
+    background-color: #53535b;
+}
+.status-change-window-block-icon {
+    width: 17px;
+    height: 17px;
+}
+.status-change-window-block-label {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 300;
+    margin: 0 0 0 7px;
+}
+.status-change-window-pointer {
+    background-color: #25252d;
+    transform: rotate(45deg);
+    margin: 0 0 0 -10px;
+    width: 20px;
+    height: 20px;
 }
