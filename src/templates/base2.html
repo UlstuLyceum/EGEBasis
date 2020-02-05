@@ -2,34 +2,34 @@
 <html lang="ru" class="{{ self._TemplateReference__context.name[:-5] }}-html">
 <head>
     <meta charset="utf-8">
-    <link type="text/css" rel="stylesheet" href="../../static/css/reset.css">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/reset.css') }}">
     <title>{{ title }}</title>
-    <link rel="shortcut icon" href="../../static/img/favicon.ico">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="../../static/js/index.js"></script>
-    <script src="../../EGEBasis/static/js/index.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 </head>
 <body>
 <div class="base2-menu">
     <div class="base2-aside {{ self._TemplateReference__context.name[:-5] }}-page-aside">
         <div class="base2-aside__content">
-            <img class="base2-aside-logo" src="../../static/img/logo.png">
+            <img class="base2-aside-logo" src="{{ url_for('static', filename='img/logo.png') }}">
             <div class="base2-aside-controls">
                 <a id="tasks" class="base2-aside-controls__element_wrapper" href="../{{ current_subj }}/tasks">
-                    <img class="base2-aside-controls__element" src="../../static/img/tasks_icon.png">
+                    <img class="base2-aside-controls__element" src="{{ url_for('static', filename='img/tasks_icon.png') }}">
                 </a>
                 <a id="learn" class="base2-aside-controls__element_wrapper" href="../{{ current_subj }}/learn">
-                    <img class="base2-aside-controls__element" src="../../static/img/read_icon.png">
+                    <img class="base2-aside-controls__element" src="{{ url_for('static', filename='img/read_icon.png') }}">
                 </a>
                 <a id="practice" class="base2-aside-controls__element_wrapper" href="../{{ current_subj }}/practice">
-                    <img class="base2-aside-controls__element" src="../../static/img/create_icon.png">
+                    <img class="base2-aside-controls__element" src="{{ url_for('static', filename='img/create_icon.png') }}">
                 </a>
                 <a id="settings" class="base2-aside-controls__element_wrapper" href="../../settings">
-                    <img class="base2-aside-controls__element" src="../../static/img/settings_icon.png">
+                    <img class="base2-aside-controls__element" src="{{ url_for('static', filename='img/settings_icon.png') }}">
                 </a>
             </div>
             <a class="base2-aside-exit-button__wrapper" href="/login">
-                <img class="base2-aside-exit-button" src="../../static/img/exit_icon.png">
+                <img class="base2-aside-exit-button" src="{{ url_for('static', filename='img/exit_icon.png') }}">
             </a>
         </div>
     </div>
@@ -51,7 +51,7 @@
 <div class="base2-content {{ self._TemplateReference__context.name[:-5] }}-page-content">{% block content %}{% endblock %}</div>
 <div class="base2-footer {{ self._TemplateReference__context.name[:-5] }}-page-footer">{% block footer %}{% endblock %}</div>
 
-<link type="text/css" rel="stylesheet" href="../../static/css/style.css">
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 <script>
     $(document).on("scroll", () => {
         if ($(window).scrollTop() <= 60) {

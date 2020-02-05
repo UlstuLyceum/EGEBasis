@@ -2,14 +2,14 @@
 
 {% block header %}
 <div class="login-page-info">
-    <a href="/"><img class="logo" src="static/img/logo.png"></a>
+    <a href="/"><img class="logo" src="{{ url_for('static', filename='img/logo.png') }}"></a>
     <p class="slogan">Готовься к ЕГЭ с удовольствием!</p>
 </div>
 <a class="signup-button" href="/signup">Зарегистрироваться</a>
 {% endblock %}
 
 {% block content %}
-<img class="login-page-illustration" src="static/img/education_illustration.png">
+<img class="login-page-illustration" src="{{ url_for('static', filename='img/education_illustration.png') }}">
 <div class="login-window__wrapper">
     <div class="login-window">
         <div class="login-window-label__wrapper">
@@ -17,7 +17,7 @@
         </div>
         <div class="login-window__content">
             <div class="login-window-form login-form">
-                <img class="login-window-form-icon" src="static/img/email_icon.png">
+                <img class="login-window-form-icon" src="{{ url_for('static', filename='img/email_icon.png') }}">
                 <input class="login-window-form-input login-form" type="text" name="login" placeholder="Email">
             </div>
             <div class="login-window-form password-form">
@@ -27,9 +27,9 @@
             <div class="login-via-networks__wrapper">
                 <div class="login-via-networks__label">Войти через соц-сети:</div>
                 <div class="login-via-networks__content">
-                    <img class="login-via-networks__element login-via-vk" src="static/img/vk_logo.png">
-                    <img class="login-via-networks__element login-via-google" src="static/img/google_logo.png">
-                    <img class="login-via-networks__element login-via-yandex" src="static/img/yandex_logo.png">
+                    <img class="login-via-networks__element login-via-vk" src="{{ url_for('static', filename='img/vk_logo.png') }}">
+                    <img class="login-via-networks__element login-via-google" src="{{ url_for('static', filename='img/google_logo.png') }}">
+                    <img class="login-via-networks__element login-via-yandex" src="{{ url_for('static', filename='img/yandex_logo.png') }}">
                 </div>
             </div>
             <div class="login-window-controls">

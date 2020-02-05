@@ -2,14 +2,14 @@
 
 {% block header %}
 <div class="signup-page-info">
-    <a href="/"><img class="logo" src="static/img/logo.png"></a>
+    <a href="/"><img class="logo" src="{{ url_for('static', filename='img/logo.png') }}"></a>
     <p class="slogan">Готовься к ЕГЭ с удовольствием!</p>
 </div>
 <a class="login-button" href="/login">Войти</a>
 {% endblock %}
 
 {% block content %}
-<img class="signup-page-illustration" src="static/img/education_illustration.png">
+<img class="signup-page-illustration" src="{{ url_for('static', filename='img/education_illustration.png') }}">
 <div class="signup-window__wrapper">
     <div class="signup-window">
         <div class="signup-window-label__wrapper">
@@ -17,15 +17,15 @@
         </div>
         <div class="signup-window__content">
             <div class="signup-window-form name-form">
-                <img class="signup-window-form-icon" src="static/img/person_icon.png">
+                <img class="signup-window-form-icon" src="{{ url_for('static', filename='img/person_icon.png') }}">
                 <input class="signup-window-form-input" type="text" name="name" placeholder="Имя">
             </div>
             <div class="signup-window-form login-form">
-                <img class="signup-window-form-icon" src="static/img/email_icon.png">
+                <img class="signup-window-form-icon" src="{{ url_for('static', filename='img/email_icon.png') }}">
                 <input class="signup-window-form-input login-form" type="text" name="login" placeholder="Email">
             </div>
             <div class="signup-window-form password-form">
-                <img class="signup-window-form-icon" src="static/img/password_icon.png">
+                <img class="signup-window-form-icon" src="{{ url_for('static', filename='img/password_icon.png') }}">
                 <input class="signup-window-form-input" type="password" name="password" placeholder="Пароль">
             </div>
             <div class="signup-window-continue-button" onclick="confirmEmail()">Далее</div>
