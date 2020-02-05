@@ -156,6 +156,7 @@ a, button, input {
     text-decoration: none;
     transition: ease 300ms;
     cursor: pointer;
+    border: none;
     display: flex;
     justify-content: center;
     align-items: center;
