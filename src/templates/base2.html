@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/reset.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <title>{{ title }}</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -15,16 +16,16 @@
         <div class="base2-aside__content">
             <img class="base2-aside-logo" src="{{ url_for('static', filename='img/logo.png') }}">
             <div class="base2-aside-controls">
-                <a id="tasks" class="base2-aside-controls__element_wrapper" href="../{{ current_subj }}/tasks">
+                <a id="tasks" class="base2-aside-controls__element_wrapper" href="{{ url_for('tasks.app_logged_in', subj_name=current_subj, mode_name='tasks') }}">
                     <img class="base2-aside-controls__element" src="{{ url_for('static', filename='img/tasks_icon.png') }}">
                 </a>
-                <a id="learn" class="base2-aside-controls__element_wrapper" href="../{{ current_subj }}/learn">
+                <a id="learn" class="base2-aside-controls__element_wrapper" href="{{ url_for('tasks.app_logged_in', subj_name=current_subj, mode_name='learn') }}">
                     <img class="base2-aside-controls__element" src="{{ url_for('static', filename='img/read_icon.png') }}">
                 </a>
-                <a id="practice" class="base2-aside-controls__element_wrapper" href="../{{ current_subj }}/practice">
+                <a id="practice" class="base2-aside-controls__element_wrapper" href="{{ url_for('tasks.app_logged_in', subj_name=current_subj, mode_name='practice') }}">
                     <img class="base2-aside-controls__element" src="{{ url_for('static', filename='img/create_icon.png') }}">
                 </a>
-                <a id="settings" class="base2-aside-controls__element_wrapper" href="../../settings">
+                <a id="settings" class="base2-aside-controls__element_wrapper" href="#">
                     <img class="base2-aside-controls__element" src="{{ url_for('static', filename='img/settings_icon.png') }}">
                 </a>
             </div>
@@ -32,9 +33,6 @@
                 <img class="base2-aside-exit-button" src="{{ url_for('static', filename='img/exit_icon.png') }}">
             </a>
         </div>
-        <a class="base2-aside-exit-button__wrapper" href="/login">
-            <img class="base2-aside-exit-button" src="../../static/img/exit_icon.png">
-        </a>
     </div>
 </div>
 <div class="base2-header {{ self._TemplateReference__context.name[:-5] }}-page-header">
@@ -43,9 +41,9 @@
         <div class="base2-header-controls">
             {% for sub in subject_list %}
                 {% if current_subj == sub["name"] %}
-                    <a href="../{{ sub["name"] + "/" + current_mode }}" class="base2-header-controls__element active"> {{ sub["label"] }}</a>
+                    <a href="{{ url_for('tasks.app_logged_in', subj_name=sub['name'], mode_name=current_mode) }}" class="base2-header-controls__element active"> {{ sub["label"] }}</a>
                 {% else %}
-                    <a href="../{{ sub["name"] + "/" + current_mode }}" class="base2-header-controls__element"> {{ sub["label"] }}</a>
+                    <a href="{{ url_for('tasks.app_logged_in', subj_name=sub['name'], mode_name=current_mode) }}" class="base2-header-controls__element"> {{ sub["label"] }}</a>
                 {% endif %}
             {% endfor %}
         </div>
@@ -53,8 +51,6 @@
 </div>
 <div class="base2-content {{ self._TemplateReference__context.name[:-5] }}-page-content">{% block content %}{% endblock %}</div>
 <div class="base2-footer {{ self._TemplateReference__context.name[:-5] }}-page-footer">{% block footer %}{% endblock %}</div>
-
-<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 <script>
     $(document).on("scroll", () => {
         if ($(window).scrollTop() <= 60) {
