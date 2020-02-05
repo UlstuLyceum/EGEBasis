@@ -35,7 +35,7 @@
                     <div class="task-block-progress-shower">{{ task["compete_percentage"] }}%</div>
                 </div>
                 <div class="task-block-points">{{ task["points"] }} балл</div>
-                <img class="task-block-status" src="../../static/img/{{ task["status"] }}_status_icon.png" data-task-number="{{ task["number"] }}">
+                <img class="task-block-status" src="{{ url_for('static', filename='img/' + task["status"]|string + "_status_icon.png") }}" data-task-number="{{ task["number"] }}">
             </a>
         {% endfor %}
     </div>

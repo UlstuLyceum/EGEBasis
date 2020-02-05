@@ -34,5 +34,6 @@ def index():
     user = get_current_user()
     if user is None:
         return redirect(url_for("auth.login"))
-    return redirect(url_for("tasks.app_logged_in", subj_name="russian", mode_name="tasks"))
-
+    return redirect(
+        url_for("tasks.app_logged_in", subj_name="russian", mode_name="tasks")
+    )

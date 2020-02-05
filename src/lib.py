@@ -2,7 +2,7 @@ import hashlib
 
 from flask import render_template, session
 
-from src.models import User, TaskLink, Task, TaskTypeLink
+from src.models import Task, TaskLink, TaskTypeLink, User
 
 try:
     import src.local_config as config
@@ -36,12 +36,13 @@ def count_percentage_on_task(tasktype):
     related_tasks = Task.find({"task_type": tasktype.id})
     done_tasks = 0
     for task in related_tasks:
-        done_tasks += TaskLink.find({"done": True, "task": task.id, "user": user.id}).count()
+        done_tasks += TaskLink.find(
+            {"done": True, "task": task.id, "user": user.id}
+        ).count()
     all_tasks = related_tasks.count()
     if all_tasks == 0:
         print("No tasks found for task type " + tasktype.number)
         return 0
-    print(done_tasks, all_tasks)
     return int(done_tasks / all_tasks * 100)
 
 

@@ -1,6 +1,6 @@
 from flask import Blueprint
 
-from src.lib import render, count_percentage_on_task, get_status_on_task
+from src.lib import count_percentage_on_task, get_status_on_task, render
 from src.models import Subject, TaskType
 
 tasks = Blueprint("tasks", __name__, template_folder="templates")
@@ -19,7 +19,7 @@ def app_logged_in(subj_name, mode_name):
                     "number": int(t.number),
                     "compete_percentage": count_percentage_on_task(t),
                     "points": t.points,
-                    "status": get_status_on_task(t)
+                    "status": get_status_on_task(t),
                 }
             )
         return render(
