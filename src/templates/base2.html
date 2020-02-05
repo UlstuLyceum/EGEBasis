@@ -11,22 +11,30 @@
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 </head>
 <body>
+<div class="test-creation-window">
+    <div class="test-creation-window-pointer"></div>
+    <div class="test-creation-window__content">
+        <div class="test-creation-window-label">Впишите номера заданий, которые хотите исключить:</div>
+        <input type="text" class="test-creation-window-input" placeholder="1 2 3 12">
+        <div class="test-creation-window-button" onclick="createTest()">Начать</div>
+    </div>
+</div>
 <div class="base2-menu">
     <div class="base2-aside {{ self._TemplateReference__context.name[:-5] }}-page-aside">
         <div class="base2-aside__content">
             <img class="base2-aside-logo" src="{{ url_for('static', filename='img/logo.png') }}">
             <div class="base2-aside-controls">
                 <a id="tasks" class="base2-aside-controls__element_wrapper" href="{{ url_for('tasks.app_logged_in', subj_name=current_subj, mode_name='tasks') }}">
-                    <img class="base2-aside-controls__element" src="{{ url_for('static', filename='img/tasks_icon.png') }}">
+                    <img class="base2-aside-controls__element tasks" src="{{ url_for('static', filename='img/tasks_icon.png') }}">
                 </a>
                 <a id="learn" class="base2-aside-controls__element_wrapper" href="{{ url_for('tasks.app_logged_in', subj_name=current_subj, mode_name='learn') }}">
-                    <img class="base2-aside-controls__element" src="{{ url_for('static', filename='img/read_icon.png') }}">
+                    <img class="base2-aside-controls__element learn" src="{{ url_for('static', filename='img/read_icon.png') }}">
                 </a>
                 <a id="practice" class="base2-aside-controls__element_wrapper" href="{{ url_for('tasks.app_logged_in', subj_name=current_subj, mode_name='practice') }}">
-                    <img class="base2-aside-controls__element" src="{{ url_for('static', filename='img/create_icon.png') }}">
+                    <img class="base2-aside-controls__element practice" src="{{ url_for('static', filename='img/create_icon.png') }}">
                 </a>
                 <a id="settings" class="base2-aside-controls__element_wrapper" href="#">
-                    <img class="base2-aside-controls__element" src="{{ url_for('static', filename='img/settings_icon.png') }}">
+                    <img class="base2-aside-controls__element settings" src="{{ url_for('static', filename='img/settings_icon.png') }}">
                 </a>
             </div>
             <a class="base2-aside-exit-button__wrapper" href="{{ url_for('auth.logout') }}">

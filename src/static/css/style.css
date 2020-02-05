@@ -5,6 +5,9 @@ html {
     overflow-x: hidden;
     font-family: 'Montserrat', sans-serif;
 }
+a, button, input {
+    outline: none!important;
+}
 .login-page-header, .signup-page-header {
     display: flex;
     justify-content: space-between;
@@ -85,6 +88,7 @@ html {
     align-items: center;
     background-color: #fff;
     border-radius: 100px;
+    font-size: 15px;
     width: 365px;
     height:42px;
     padding: 0 0 0 10px;
@@ -499,4 +503,67 @@ html {
     margin: 0 0 0 -10px;
     width: 20px;
     height: 20px;
+}
+.test-creation-window {
+    z-index: -2;
+    opacity: 0;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    left: -9999px;
+}
+.test-creation-window__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #25252d;
+    border-radius: 25px;
+    padding: 20px 35px;
+}
+.test-creation-window-label {
+    font-size: 15px;
+    color: #fff;
+    font-weight: 500;
+    margin: 0 0 10px 0;
+}
+.test-creation-window-input {
+    font-size: 15px;
+    font-weight: 500;
+    color: #fff;
+    border-radius: 100px;
+    background-color: #383840;
+    border: none;
+    outline: none;
+    width: calc(100% - 10px);
+    height: 35px;
+    padding: 0 0 0 10px;
+    margin: 10px 0 0 0;
+}
+.test-creation-window-button {
+    cursor: pointer;
+    transition: ease 300ms;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    font-size: 13px;
+    border-radius: 100px;
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: #955bff;
+    color: #fff;
+    margin: 15px 0 0 0;
+}
+.test-creation-window-button:hover {
+    background-color: #fff;
+    color: #955bff;
+}
+.test-creation-window-pointer {
+    transform: rotate(45deg);
+    background-color: #25252d;
+    width: 20px;
+    height: 20px;
+    margin: 0 -10px 0 0;
 }

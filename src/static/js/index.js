@@ -33,6 +33,9 @@ $(document).on("click", (event) => {
             "opacity": "0"
         });
     }
+});
+
+$(document).on("click", (event) => {
     if ($(event.target).hasClass("task-block-status")){
         event.preventDefault();
         let objCoords = $(event.target)[0].getBoundingClientRect();
@@ -64,4 +67,31 @@ function changeTaskStatus(obj) {
         "z-index": "-2",
         "opacity": "0"
     });
+}
+
+$(document).on("click", (event) => {
+    if ($(event.target).hasClass("practice")) {
+        event.preventDefault();
+        let objInfo = $(event.target)[0].getBoundingClientRect();
+        let windowInfo = $(".test-creation-window")[0].getBoundingClientRect();
+        $(".test-creation-window").css({
+            "top": objInfo.top + objInfo.height / 2 - windowInfo.height / 2 + "px",
+            "left": "150px",
+            "z-index": "2",
+            "opacity": "1"
+        });
+    }
+    if (!$(event.target)[0].classList.value.includes("test-creation") && !$(event.target).hasClass("practice")) {
+        $(".test-creation-window").css({
+            "top": "0px",
+            "left": "-9999px",
+            "z-index": "-2",
+            "opacity": "0"
+        });
+    }
+});
+
+function createTest() {
+    let numbers = $(".test-creation-window-input")[0].value.split(" ").map(numStr => parseInt(numStr)).filter(num => num);
+    console.log(numbers);
 }
