@@ -1,0 +1,6 @@
+{% extends "base2.html" %}
+
+{% block content %}
+    <h3>Теория пошла</h3>
+    <a href="{{ url_for('tasks.task_tasks', subj_name=current_subj, task_id=task_id) }}">Решать задачи</a>
+{% endblock %}
