@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-from umongo import Instance, Document, fields
+from umongo import Document, Instance, fields
 
 try:
     import src.local_config as config

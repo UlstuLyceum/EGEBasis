@@ -9,8 +9,11 @@
 {% endblock %}
 
 {% block content %}
+{% if error %}
+    Ошибка, нет такого пользователя и т. д.
+{% endif %}
 <img class="login-page-illustration" src="{{ url_for('static', filename='img/education_illustration.png') }}">
-<div class="login-window__wrapper">
+<form action="{{ url_for("auth.login") }}" method="post" class="login-window__wrapper">
     <div class="login-window">
         <div class="login-window-label__wrapper">
             <p class="login-window-label">Вход</p>
@@ -18,7 +21,7 @@
         <div class="login-window__content">
             <div class="login-window-form login-form">
                 <img class="login-window-form-icon" src="{{ url_for('static', filename='img/email_icon.png') }}">
-                <input class="login-window-form-input login-form" type="text" name="login" placeholder="Email">
+                <input class="login-window-form-input login-form" type="text" name="email" placeholder="Email">
             </div>
             <div class="login-window-form password-form">
                 <img class="login-window-form-icon" src="static/img/password_icon.png">
@@ -34,11 +37,11 @@
             </div>
             <div class="login-window-controls">
                 <div class="password-forget prwe" onclick="passwordReestablish(this)">Забыли пароль?</div>
-                <a class="login-window-login-button" href="/">Войти</a>
+                <input class="login-window-login-button" type="submit" value="Войти">
             </div>
         </div>
     </div>
-</div>
+</form>
 <div class="password-reestablish-window__wrapper prwe">
     <div class="password-reestablish-window prwe">
         <p class="password-reestablish-window-text prwe">Введите e-mail адрес, который вы указали при регистрации, либо тот, к которому привязана соц-сеть через которую вы авторизовались и нажмите отправить.<br><br>Далее следуйте инструкциям в письме, которое придёт на указанную почту.</p>
