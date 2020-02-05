@@ -11,13 +11,13 @@ except ImportError:
 app = Flask(__name__)
 
 # Flask config
-app.config['SECRET_KEY'] = config.SECRET_KEY
-app.config['MAIL_SERVER'] = config.MAIL_SERVER
-app.config['MAIL_PORT'] = config.MAIL_PORT
-app.config['MAIL_USE_TLS'] = config.MAIL_USE_TLS
-app.config['MAIL_USERNAME'] = config.MAIL_USERNAME
-app.config['MAIL_DEFAULT_SENDER'] = config.MAIL_DEFAULT_SENDER
-app.config['MAIL_PASSWORD'] = config.MAIL_PASSWORD
+app.config["SECRET_KEY"] = config.SECRET_KEY
+app.config["MAIL_SERVER"] = config.MAIL_SERVER
+app.config["MAIL_PORT"] = config.MAIL_PORT
+app.config["MAIL_USE_TLS"] = config.MAIL_USE_TLS
+app.config["MAIL_USERNAME"] = config.MAIL_USERNAME
+app.config["MAIL_DEFAULT_SENDER"] = config.MAIL_DEFAULT_SENDER
+app.config["MAIL_PASSWORD"] = config.MAIL_PASSWORD
 
 # Flask Mail
 mail = Mail(app)

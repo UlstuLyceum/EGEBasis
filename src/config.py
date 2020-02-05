@@ -14,7 +14,7 @@ DB_NAME = environ.get("DB_NAME", "egebasis-test")
 SALT = environ.get("SALT", "somesalt")
 
 # Mail config
-MAIL_SERVER = 'smtp.googlemail.com'
+MAIL_SERVER = "smtp.googlemail.com"
 MAIL_PORT = 587
 MAIL_USE_TLS = True
 MAIL_USERNAME = environ.get("MAIL_USERNAME", "someone@gmail.com")

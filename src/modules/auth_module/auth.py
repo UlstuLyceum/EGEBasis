@@ -3,7 +3,7 @@ from flask_mail import Message
 from werkzeug.utils import redirect
 
 from src.init import mail
-from src.lib import render, hash_password, get_current_user, generate_confirm_code
+from src.lib import generate_confirm_code, get_current_user, hash_password, render
 from src.models import User
 
 auth = Blueprint("auth", __name__, template_folder="templates")
@@ -50,13 +50,20 @@ def signup():
     if User.find_one({"email": email}) is not None:
         return render("signup.html", title="Зарегистрироваться", user_exists=True)
     confirm_code = generate_confirm_code(email)
-    user = User(name=name, email=email, password=hash_password(password), confirm_code=confirm_code)
+    user = User(
+        name=name,
+        email=email,
+        password=hash_password(password),
+        confirm_code=confirm_code,
+    )
     user.commit()
     msg = Message(
         subject="Подтверждение аккаунта",
         sender=config.MAIL_DEFAULT_SENDER,
         recipients=[email],
-        body="Ваша ссылка для подтверждения: " + config.APP_URL + url_for("auth.confirm", confirm_code=confirm_code)[1:]
+        body="Ваша ссылка для подтверждения: "
+        + config.APP_URL
+        + url_for("auth.confirm", confirm_code=confirm_code)[1:],
     )
     mail.send(msg)
     return render("finishSignup.html", title="Завершение регистрации")

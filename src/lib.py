@@ -1,5 +1,6 @@
-from flask import render_template, session
 import hashlib
+
+from flask import render_template, session
 
 from src.models import User
 
@@ -22,7 +23,7 @@ def get_current_user():
 
 def hash_password(raw_data):
     m = hashlib.md5()
-    m.update((config.SALT + raw_data).encode('utf-8'))
+    m.update((config.SALT + raw_data).encode("utf-8"))
     return m.hexdigest()
 
 
