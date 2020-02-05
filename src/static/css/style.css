@@ -229,6 +229,7 @@ html {
     transition: ease 300ms;
     cursor: pointer;
     display: flex;
+    border: none;
     text-decoration: none;
     justify-content: center;
     align-items: center;
