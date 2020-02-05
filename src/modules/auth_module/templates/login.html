@@ -2,15 +2,18 @@
 
 {% block header %}
 <div class="login-page-info">
-    <a href="/"><img class="logo" src="{{ url_for('static', filename='img/logo.png') }}"></a>
+    <a href="{{ url_for("index") }}"><img class="logo" src="{{ url_for('static', filename='img/logo.png') }}"></a>
     <p class="slogan">Готовься к ЕГЭ с удовольствием!</p>
 </div>
-<a class="signup-button" href="/signup">Зарегистрироваться</a>
+<a class="signup-button" href="{{ url_for("auth.signup") }}">Зарегистрироваться</a>
 {% endblock %}
 
 {% block content %}
 {% if error %}
     Ошибка, нет такого пользователя и т. д.
+{% endif %}
+{% if not_confirmed %}
+    Вы не подтвердили свою почту
 {% endif %}
 <img class="login-page-illustration" src="{{ url_for('static', filename='img/education_illustration.png') }}">
 <form action="{{ url_for("auth.login") }}" method="post" class="login-window__wrapper">

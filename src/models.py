@@ -13,8 +13,10 @@ instance = Instance(db)
 @instance.register
 class User(Document):
 
+    name = fields.StringField(required=True)
     email = fields.EmailField(required=True, unique=True)
     password = fields.StringField()
+    confirm_code = fields.StringField()
 
     class Meta:
         collection = db.user

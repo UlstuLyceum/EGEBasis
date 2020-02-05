@@ -1,0 +1,26 @@
+{% extends "base1.html" %}
+
+{% block header %}
+<div class="signup-page-info">
+    <a href="{{ url_for("index") }}"><img class="logo" src="{{ url_for('static', filename='img/logo.png') }}"></a>
+    <p class="slogan">Готовься к ЕГЭ с удовольствием!</p>
+</div>
+<a class="login-button" href="{{ url_for("auth.login") }}">Войти</a>
+{% endblock %}
+
+{% block content %}
+<img class="signup-page-illustration" src="{{ url_for('static', filename='img/education_illustration.png') }}">
+<div class="signup-window__wrapper">
+    <div class="signup-window">
+        <div class="signup-window-label__wrapper">
+            <p class="signup-window-label">Регистрация</p>
+        </div>
+        <div class="signup-window__content" style="width: 375px; color: #fff;">
+            <p class="signup-window-text">
+                На указанную вами почту было выслано письмо, следуйте инструкциям, написанным в нём, чтобы завершить регистрацию.
+            </p>
+            <a href="{{ url_for("auth.login") }}" class="signup-window-end-signup-button">Завершить</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

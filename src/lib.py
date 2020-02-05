@@ -24,3 +24,7 @@ def hash_password(raw_data):
     m = hashlib.md5()
     m.update((config.SALT + raw_data).encode('utf-8'))
     return m.hexdigest()
+
+
+def generate_confirm_code(email):
+    return hash_password(email)[:10]
