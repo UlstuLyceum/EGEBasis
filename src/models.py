@@ -40,9 +40,18 @@ class TaskType(Document):
 
 
 @instance.register
+class Text(Document):
+
+    body = fields.StringField(required=True)
+
+
+@instance.register
 class Task(Document):
 
     task_type = fields.ReferenceField(TaskType)
+    body = fields.StringField()
+    answer = fields.StringField()
+    text = fields.ReferenceField(Text)
 
 
 @instance.register
@@ -67,3 +76,4 @@ TaskType.ensure_indexes()
 Task.ensure_indexes()
 TaskTypeLink.ensure_indexes()
 TaskLink.ensure_indexes()
+Text.ensure_indexes()

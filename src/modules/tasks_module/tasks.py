@@ -2,7 +2,7 @@ from flask import Blueprint, url_for
 from werkzeug.utils import redirect
 
 from src.lib import count_percentage_on_task, get_status_on_task, render, get_current_user
-from src.models import Subject, TaskType, Task
+from src.models import Subject, TaskType, Task, TaskLink, Text
 
 tasks = Blueprint("tasks", __name__, template_folder="templates")
 
@@ -52,10 +52,12 @@ def task_tasks(subj_name, task_id):
     tasks = []
     raw_tasks = Task.find({"task_type": task_type.id})
     for task in raw_tasks:
+        tl = TaskLink.find_one({"task": task.id, "user": user.id})
+        text = Text.find_one({"id": task.text})
         tasks.append({
-            "body": "Тут содержание задания",
-            "text": None,  # связанный с заданием текст
-            "done": True,
-            "answer": "123"
+            "body": eval('"' + task.body + '"'),
+            "text": None if not text else text.body,
+            "done": tl.done if tl else False,
+            "answer": task.answer
         })
     return render("task-list.html", current_subj=subj_name, tasks=tasks)

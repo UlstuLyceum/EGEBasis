@@ -3,7 +3,7 @@
 {% block content %}
     {% for task in tasks %}
         <div>
-            <p>{{ task["body"] }}</p>
+            <p><pre>{{ task["body"] }}</pre></p>
             {% if task["text"] != None %}
                 <p>Текст к заданию</p>
                 {{ task["text"] }}
