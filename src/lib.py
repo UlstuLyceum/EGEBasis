@@ -1,4 +1,5 @@
 from flask import render_template, session
+from src.models import User
 
 
 def render(template_name, **kwargs):
@@ -8,4 +9,5 @@ def render(template_name, **kwargs):
 def get_current_user():
     email = session.get("email", None)
     password = session.get("password", None)
-    return None  # TODO gettting user
+    user = User.find_one({"email": email, "password": password})
+    return user
