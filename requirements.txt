@@ -2,9 +2,11 @@ appdirs==1.4.3
 astroid==2.3.3
 attrs==19.3.0
 black==19.10b0
+blinker==1.4
 Click==7.0
 dnspython==1.16.0
 Flask==1.1.1
+Flask-Mail==0.9.1
 isort==4.3.21
 itsdangerous==1.1.0
 Jinja2==2.11.1
