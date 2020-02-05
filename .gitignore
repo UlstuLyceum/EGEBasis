@@ -108,3 +108,4 @@ venv.bak/
 
 # project-specific configuration files
 src/local_config.py
+db_test.py

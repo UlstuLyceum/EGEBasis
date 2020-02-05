@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/reset.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <title>{{ title }}</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -53,8 +54,6 @@
 </div>
 <div class="base2-content {{ self._TemplateReference__context.name[:-5] }}-page-content">{% block content %}{% endblock %}</div>
 <div class="base2-footer {{ self._TemplateReference__context.name[:-5] }}-page-footer">{% block footer %}{% endblock %}</div>
-
-<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 <script>
     $(document).on("scroll", () => {
         if ($(window).scrollTop() <= 60) {
