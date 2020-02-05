@@ -1,0 +1,38 @@
+{% extends "base1.html" %}
+
+{% block header %}
+<div class="signup-page-info">
+    <a href="{{ url_for("index") }}"><img class="logo" src="{{ url_for('static', filename='img/logo.png') }}"></a>
+    <p class="slogan">Готовься к ЕГЭ с удовольствием!</p>
+</div>
+<a class="login-button" href="{{ url_for("auth.login") }}">Войти</a>
+{% endblock %}
+
+{% block content %}
+{% if user_exists %}
+    Ну типо пользователь с таким email существует
+{% endif %}
+<img class="signup-page-illustration" src="{{ url_for('static', filename='img/education_illustration.png') }}">
+<form action="{{ url_for("auth.signup") }}" method="post" class="signup-window__wrapper">
+    <div class="signup-window">
+        <div class="signup-window-label__wrapper">
+            <p class="signup-window-label">Регистрация</p>
+        </div>
+        <div class="signup-window__content">
+            <div class="signup-window-form name-form">
+                <img class="signup-window-form-icon" src="{{ url_for('static', filename='img/person_icon.png') }}">
+                <input class="signup-window-form-input" type="text" name="name" placeholder="Имя">
+            </div>
+            <div class="signup-window-form login-form">
+                <img class="signup-window-form-icon" src="{{ url_for('static', filename='img/email_icon.png') }}">
+                <input class="signup-window-form-input login-form" type="text" name="email" placeholder="Email">
+            </div>
+            <div class="signup-window-form password-form">
+                <img class="signup-window-form-icon" src="{{ url_for('static', filename='img/password_icon.png') }}">
+                <input class="signup-window-form-input" type="password" name="password" placeholder="Пароль">
+            </div>
+            <input type="submit" value="Далее" class="signup-window-continue-button">
+        </div>
+    </div>
+</form>
+{% endblock %}

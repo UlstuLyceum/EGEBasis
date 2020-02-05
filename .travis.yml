@@ -9,7 +9,13 @@ install:
 script:
   - black -q --check src
   - isort -rc src
-  - pylint -E src
 
 after_success:
   - pylint src
+
+deploy:
+  - provider: heroku
+    api_key: $HEROKU_API_KEY
+    app: $HEROKY_PROD
+    on:
+      branch: master
