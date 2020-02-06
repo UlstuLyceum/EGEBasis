@@ -35,7 +35,8 @@ class TaskType(Document):
 
     number = fields.StringField(required=True, unique=True)
     points = fields.IntegerField(required=True, default=1)
-
+    cods = fields.ListField(fields.StringField)
+    description = fields.StringField()
     subject = fields.ReferenceField(Subject)
 
 
@@ -49,8 +50,10 @@ class Text(Document):
 class Task(Document):
 
     task_type = fields.ReferenceField(TaskType)
-    body = fields.StringField()
-    answer = fields.StringField()
+    description = fields.StringField()
+    options = fields.ListField(fields.StringField)
+    answers = fields.ListField(fields.StringField)
+    explanation = fields.StringField()
     text = fields.ReferenceField(Text)
 
 

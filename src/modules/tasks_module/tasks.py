@@ -47,6 +47,8 @@ def app_logged_in(subj_name):
 @tasks.route("/<subj_name>/task/<int:task_id>")
 def task_theory(subj_name, task_id):
     subject_list = list(Subject.find({"hidden": False}))
+    subject = Subject.find_one({"name": subj_name})
+    task_type = TaskType.find_one({"subject": subject.id, "number": str(task_id)})
     return render(
         "task.html",
         title="Задание",
@@ -55,10 +57,11 @@ def task_theory(subj_name, task_id):
         current_mode="tasks",
         subject_list=subject_list,
         task_id=task_id,
-        cods=["1.1", "1.2"],
-        task_description="В задании нужно прочитать текст и выбрать варианты ответов, которые наиболее точно передают "
-        "его главную мысль. В данном задании всегда два варианта ответа. За правильный даётся один "
-        "первичный балл.",
+        cods=list(task_type.cods),
+        task_description=task_type.description
+        # task_description="В задании нужно прочитать текст и выбрать варианты ответов, которые наиболее точно передают "
+        # "его главную мысль. В данном задании всегда два варианта ответа. За правильный даётся один "
+        # "первичный балл.",
     )
 
 
@@ -79,10 +82,13 @@ def task_tasks(subj_name, task_id):
             print(text)
         tasks.append(
             {
-                "body": eval('"' + task.body + '"'),
+                "number": task_type.number,
+                "description": eval('"' + task.description + '"'),
                 "text": text,
+                "options": task.options,
                 "done": tl.done if tl else False,
-                "answer": task.answer,
+                "answers": task.answers,
+                "explanation": task.explanation
             }
         )
     return render("task-list.html", current_subj=subj_name, tasks=tasks)
