@@ -23,7 +23,7 @@
         </div>
         <div class="status-change-window-pointer"></div>
     </div>
-    <div class="all-tasks-block">
+    <div class="all-tasks-block" data-subject-name="{{ current_subj }}">
         {% for task in tasks_list %}
             <a class="task-block" href="{{ url_for('tasks.task_theory', subj_name=current_subj, task_id=task['number']) }}">
                 <div class="task-block-label">Задание {{ task["number"] }}</div>

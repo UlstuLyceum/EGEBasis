@@ -56,7 +56,12 @@ $(document).on("click", (event) => {
 });
 
 function changeTaskStatus(obj) {
-    console.log(current_task, $(obj).data("status"));
+    let subject_name = $(".all-tasks-block").data("subject-name");
+    $.post("/api/change_status/", {
+        subject_name: subject_name,
+        task_number: current_task,
+        new_status: $(obj).data("status")
+    });
     $("[data-task-number=\"" + current_task + "\"]")[0].src = "../../static/img/" + $(obj).data("status") + "_status_icon.png";
     $(".status-change-window").css({
         "top": "0",
