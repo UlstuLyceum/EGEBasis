@@ -78,9 +78,8 @@ def task_practice(subj_name, task_id):
     for task in raw_tasks:
         tl = TaskLink.find_one({"task": task.id, "user": user.id})
         text = None
-        if task.text is not None:
+        if task.text.pk is not None:
             text = task.text.fetch().body
-            print(text)
         tasks.append(
             {
                 "number": task_type.number,
