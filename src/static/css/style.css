@@ -796,12 +796,15 @@ a, button, input {
     margin: 20px 0 0 0;
 }
 .task-practice-block__element-input {
+    transition: ease 200ms;
     padding: 0 0 0 15px;
     border-radius: 100px;
     border: 2px solid #ecedf1;
     width: calc(100% - 440px);
 }
 .task-practice-block__element-check-button {
+    transition: ease 300ms;
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -810,10 +813,18 @@ a, button, input {
     color: #fff;
     font-size: 13px;
     font-style: italic;
-    width: 200px;
-    height: 35px;
+    border: 2px solid #955bff;
+    width: 196px;
+    height: 31px;
+}
+.task-practice-block__element-check-button:hover {
+    border: 2px solid #955bff;
+    background-color: #fff;
+    color: #955bff;
 }
 .task-practice-block__element-show-answer-button {
+    transition: ease 300ms;
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -827,6 +838,7 @@ a, button, input {
     height: 35px;
 }
 .task-practice-block__element-hidden {
+    display: none;
     border-top: 2px solid #ecedf1;
     padding: 20px 0 0 0;
     margin: 20px 0 0 0;
