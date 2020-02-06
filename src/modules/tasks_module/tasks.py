@@ -89,7 +89,7 @@ def task_practice(subj_name, task_id):
                 "options": task.options,
                 "done": tl.done if tl else False,
                 "answers": task.answers,
-                "explanation": task.explanation
+                "explanation": task.explanation,
             }
         )
     return render(
@@ -99,5 +99,5 @@ def task_practice(subj_name, task_id):
         current_subj=subj_name,
         current_mode="tasks",
         subject_list=subject_list,
-        tasks=tasks
+        tasks=tasks,
     )
