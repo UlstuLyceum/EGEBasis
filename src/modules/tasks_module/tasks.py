@@ -59,9 +59,6 @@ def task_theory(subj_name, task_id):
         task_id=task_id,
         cods=list(task_type.cods),
         task_description=task_type.description
-        # task_description="В задании нужно прочитать текст и выбрать варианты ответов, которые наиболее точно передают "
-        # "его главную мысль. В данном задании всегда два варианта ответа. За правильный даётся один "
-        # "первичный балл.",
     )
 
 

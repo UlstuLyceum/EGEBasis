@@ -127,4 +127,24 @@ $(document).on("click", (event) => {
     }
 });
 
+function checkTaskAnswer(obj) {
+    let rightAnswers = String($(obj).data("answers")).split(" ");
+    let userAnswer = $(obj).prev()[0].value;
+    if (rightAnswers.includes(userAnswer)) {
+        $(obj).prev().css({"border": "2px solid #2ecc71"})
+    }
+    else {
+        $(obj).prev().css({"border": "2px solid #f74a5a"})
+    }
+}
 
+function showTaskAnswer(obj) {
+    if ($(obj)[0].innerHTML === "Показать ответ") {
+        $(obj).parent().next().slideDown(200);
+        $(obj)[0].innerHTML = "Скрыть ответ";
+    }
+    else {
+        $(obj).parent().next().slideUp(200);
+        $(obj)[0].innerHTML = "Показать ответ";
+    }
+}
