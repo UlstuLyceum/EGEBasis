@@ -1,10 +1,13 @@
-from bson.objectid import ObjectId
 from flask import Blueprint, url_for
 from werkzeug.utils import redirect
 
-from src.lib import (count_percentage_on_task, get_current_user,
-                     get_status_on_task, render)
-from src.models import Subject, Task, TaskLink, TaskType, Text
+from src.lib import (
+    count_percentage_on_task,
+    get_current_user,
+    get_status_on_task,
+    render,
+)
+from src.models import Subject, Task, TaskLink, TaskType
 
 tasks = Blueprint("tasks", __name__, template_folder="templates")
 
