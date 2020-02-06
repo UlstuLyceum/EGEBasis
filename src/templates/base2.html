@@ -49,9 +49,9 @@
         <div class="base2-header-controls">
             {% for sub in subject_list %}
                 {% if current_subj == sub["name"] %}
-                    <a href="{{ url_for('tasks.app_logged_in', subj_name=sub['name']) }}" class="base2-header-controls__element active"> {{ sub["label"] }}</a>
+                    <a href="/{{ sub['name'] }}/{{ current_mode }}" class="base2-header-controls__element active"> {{ sub["label"] }}</a>
                 {% else %}
-                    <a href="{{ url_for('tasks.app_logged_in', subj_name=sub['name']) }}" class="base2-header-controls__element"> {{ sub["label"] }}</a>
+                    <a href="/{{ sub['name'] }}/{{ current_mode }}" class="base2-header-controls__element"> {{ sub["label"] }}</a>
                 {% endif %}
             {% endfor %}
         </div>
