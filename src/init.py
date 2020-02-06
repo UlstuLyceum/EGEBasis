@@ -23,8 +23,14 @@ app.config["MAIL_PASSWORD"] = config.MAIL_PASSWORD
 mail = Mail(app)
 
 from src.modules.auth_module.auth import auth
+from src.modules.tasks_module.tasks import tasks
+from src.modules.learn_module.learn import learn
+from src.modules.api_module.api import api
 
 app.register_blueprint(auth)
+app.register_blueprint(tasks)
+app.register_blueprint(learn)
+app.register_blueprint(api)
 
 
 @app.route("/")
@@ -32,21 +38,4 @@ def index():
     user = get_current_user()
     if user is None:
         return redirect(url_for("auth.login"))
-    return redirect(url_for("app_logged_in", subj_name="russian", mode_name="tasks"))
-
-
-@app.route("/<subj_name>/<mode_name>")
-def app_logged_in(subj_name, mode_name):
-    if mode_name == "tasks":
-        return render_template(
-            "tasks.html",
-            title="Задания",
-            header_label="Все задания первой части",
-            current_subj=subj_name,
-            current_mode=mode_name,
-            subject_list=[
-                {"label": "Русский", "name": "russian"},
-                {"label": "Математика", "name": "math"},
-                {"label": "Информатика", "name": "it"},
-            ],
-        )
+    return redirect(url_for("tasks.app_logged_in", subj_name="russian"))

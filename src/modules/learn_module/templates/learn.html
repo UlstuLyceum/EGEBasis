@@ -1,0 +1,17 @@
+{% extends "base2.html" %}
+
+{% block content %}
+    <div class="learn-page-controls">
+        <div class="learn-page-code-numbers" data-amount="{{ cod_amount }}">
+            {% for num in range(1, cod_amount + 1) %}
+                <div class="learn-page-code-numbers__element cod-number">{{ num }}</div>
+            {% endfor %}
+        </div>
+        <input type="text" class="learn-page-search-form" placeholder="Поиск">
+    </div>
+    <div class="learn-page-blocks">
+        {% for cod in cods %}
+            {% include "cods/russian_" + cod + ".html" %}
+        {% endfor %}
+    </div>
+{% endblock %}
