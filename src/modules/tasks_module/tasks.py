@@ -1,8 +1,10 @@
+from bson.objectid import ObjectId
 from flask import Blueprint, url_for
 from werkzeug.utils import redirect
-from bson.objectid import ObjectId
-from src.lib import count_percentage_on_task, get_status_on_task, render, get_current_user
-from src.models import Subject, TaskType, Task, TaskLink, Text
+
+from src.lib import (count_percentage_on_task, get_current_user,
+                     get_status_on_task, render)
+from src.models import Subject, Task, TaskLink, TaskType, Text
 
 tasks = Blueprint("tasks", __name__, template_folder="templates")
 
@@ -37,12 +39,12 @@ def app_logged_in(subj_name, mode_name):
     return "No such page"
 
 
-@tasks.route('/<subj_name>/task/<int:task_id>')
+@tasks.route("/<subj_name>/task/<int:task_id>")
 def task_theory(subj_name, task_id):
     return render("task-theory.html", current_subj=subj_name, task_id=task_id)
 
 
-@tasks.route('/<subj_name>/task/<int:task_id>/tasks')
+@tasks.route("/<subj_name>/task/<int:task_id>/tasks")
 def task_tasks(subj_name, task_id):
     if get_current_user() is None:
         return redirect(url_for("index"))
@@ -57,10 +59,12 @@ def task_tasks(subj_name, task_id):
         if task.text is not None:
             text = task.text.fetch().body
             print(text)
-        tasks.append({
-            "body": eval('"' + task.body + '"'),
-            "text": text,
-            "done": tl.done if tl else False,
-            "answer": task.answer
-        })
+        tasks.append(
+            {
+                "body": eval('"' + task.body + '"'),
+                "text": text,
+                "done": tl.done if tl else False,
+                "answer": task.answer,
+            }
+        )
     return render("task-list.html", current_subj=subj_name, tasks=tasks)
