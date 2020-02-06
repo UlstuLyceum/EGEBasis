@@ -24,13 +24,13 @@
         <div class="base2-aside__content">
             <img class="base2-aside-logo" src="{{ url_for('static', filename='img/logo.png') }}">
             <div class="base2-aside-controls">
-                <a id="tasks" class="base2-aside-controls__element_wrapper" href="{{ url_for('tasks.app_logged_in', subj_name=current_subj, mode_name='tasks') }}">
+                <a id="tasks" class="base2-aside-controls__element_wrapper" href="{{ url_for('tasks.app_logged_in', subj_name=current_subj) }}">
                     <img class="base2-aside-controls__element tasks" src="{{ url_for('static', filename='img/tasks_icon.png') }}">
                 </a>
-                <a id="learn" class="base2-aside-controls__element_wrapper" href="{{ url_for('tasks.app_logged_in', subj_name=current_subj, mode_name='learn') }}">
+                <a id="learn" class="base2-aside-controls__element_wrapper" href="{{ url_for('learn.app_logged_in', subj_name=current_subj) }}">
                     <img class="base2-aside-controls__element learn" src="{{ url_for('static', filename='img/read_icon.png') }}">
                 </a>
-                <a id="practice" class="base2-aside-controls__element_wrapper" href="{{ url_for('tasks.app_logged_in', subj_name=current_subj, mode_name='practice') }}">
+                <a id="practice" class="base2-aside-controls__element_wrapper" href="#">
                     <img class="base2-aside-controls__element practice" src="{{ url_for('static', filename='img/create_icon.png') }}">
                 </a>
                 <a id="settings" class="base2-aside-controls__element_wrapper" href="#">
@@ -49,9 +49,9 @@
         <div class="base2-header-controls">
             {% for sub in subject_list %}
                 {% if current_subj == sub["name"] %}
-                    <a href="{{ url_for('tasks.app_logged_in', subj_name=sub['name'], mode_name=current_mode) }}" class="base2-header-controls__element active"> {{ sub["label"] }}</a>
+                    <a href="{{ url_for('tasks.app_logged_in', subj_name=sub['name']) }}" class="base2-header-controls__element active"> {{ sub["label"] }}</a>
                 {% else %}
-                    <a href="{{ url_for('tasks.app_logged_in', subj_name=sub['name'], mode_name=current_mode) }}" class="base2-header-controls__element"> {{ sub["label"] }}</a>
+                    <a href="{{ url_for('tasks.app_logged_in', subj_name=sub['name']) }}" class="base2-header-controls__element"> {{ sub["label"] }}</a>
                 {% endif %}
             {% endfor %}
         </div>

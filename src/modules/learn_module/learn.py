@@ -9,12 +9,36 @@ subject = {
     "label": "russian",
     "cod_amount": "11",
     "cods": [
-        "1.1", "1.2", "2.1", "2.2", "2.3", "2.4", "2.5", "3.1", "3.2", "3.3", "3.4",
-        "4.1", "4.2", "4.3", "5.1", "5.2", "5.3", "9.3", "9.4", "10.1", "10.2", "10.3",
-        "10.4", "10.5", "11"
-    ]
+        "1.1",
+        "1.2",
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5",
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "4.1",
+        "4.2",
+        "4.3",
+        "5.1",
+        "5.2",
+        "5.3",
+        "9.3",
+        "9.4",
+        "10.1",
+        "10.2",
+        "10.3",
+        "10.4",
+        "10.5",
+        "11",
+    ],
 }
-subject["cods"] = list(map(lambda x: x.replace(".", "-") if "." in x else x, subject["cods"]))
+subject["cods"] = list(
+    map(lambda x: x.replace(".", "-") if "." in x else x, subject["cods"])
+)
 
 
 @learn.route("/<subj_name>/learn")
@@ -28,5 +52,5 @@ def app_logged_in(subj_name):
         current_mode="learn",
         subject_list=subject_list,
         cod_amount=11,
-        cods=subject["cods"]
+        cods=subject["cods"],
     )
