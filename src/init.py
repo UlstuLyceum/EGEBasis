@@ -24,9 +24,11 @@ mail = Mail(app)
 
 from src.modules.auth_module.auth import auth
 from src.modules.tasks_module.tasks import tasks
+from src.modules.learn_module.learn import learn
 
 app.register_blueprint(auth)
 app.register_blueprint(tasks)
+app.register_blueprint(learn)
 
 
 @app.route("/")
