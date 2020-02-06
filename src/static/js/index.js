@@ -57,7 +57,7 @@ $(document).on("click", (event) => {
 
 function changeTaskStatus(obj) {
     let subject_name = $(".all-tasks-block").data("subject-name");
-    $.post("/api/change_status/", {
+    $.post("/api/change_status", {
         subject_name: subject_name,
         task_number: current_task,
         new_status: $(obj).data("status")

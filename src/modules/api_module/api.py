@@ -11,9 +11,9 @@ def change_status():
     user = get_current_user()
     if user is None:
         return "No user context"
-    subject_name = request["subject_name"]
-    task_number = str(request["task_number"])
-    new_status = int(request["new_status"])
+    subject_name = request.form["subject_name"]
+    task_number = str(request.form["task_number"])
+    new_status = int(request.form["new_status"])
     subject = Subject.find_one({"name": subject_name})
     tasktype = TaskType.find_one({"subject": subject.id, "number": task_number})
     tasktypelink = TaskTypeLink.find_one({"user": user.id, "task_type": tasktype.id})
