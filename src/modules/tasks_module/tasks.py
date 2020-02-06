@@ -51,7 +51,20 @@ def app_logged_in(subj_name):
 
 @tasks.route("/<subj_name>/task/<int:task_id>")
 def task_theory(subj_name, task_id):
-    return render("task-theory.html", current_subj=subj_name, task_id=task_id)
+    subject_list = list(Subject.find({"hidden": False}))
+    return render(
+        "task.html",
+        title="Задание",
+        header_label="Теория по заданию",
+        current_subj=subj_name,
+        current_mode="tasks",
+        subject_list=subject_list,
+        task_id=task_id,
+        cods=["1.1", "1.2"],
+        task_description="В задании нужно прочитать текст и выбрать варианты ответов, которые наиболее точно передают "
+                         "его главную мысль. В данном задании всегда два варианта ответа. За правильный даётся один "
+                         "первичный балл."
+    )
 
 
 @tasks.route("/<subj_name>/task/<int:task_id>/tasks")
