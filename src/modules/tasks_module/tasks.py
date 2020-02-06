@@ -31,12 +31,7 @@ def app_logged_in(subj_name):
         )
     for t in raw_tasks:
         tasks_list.append(
-            {
-                "number": 1,
-                "compete_percentage": 100,
-                "points": 1,
-                "status": 0,
-            }
+            {"number": 1, "compete_percentage": 100, "points": 1, "status": 0,}
         )
     return render(
         "tasks.html",
