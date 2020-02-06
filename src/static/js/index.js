@@ -1,9 +1,6 @@
 current_task = 0;
-
-function confirmEmail() {
-    $(".signup-window__content").css({"width": "375px", "color": "#fff"});
-    $(".signup-window__content")[0].innerHTML = "<p class=\"signup-window-text\">На указанную вами почту было выслано письмо, следуйте инструкциям, написанным в нём, чтобы завершить регистрацию.</p><a href=\"/login\" class=\"signup-window-end-signup-button\">Завершить</a>";
-}
+current_cods = [];
+codNumberClickActive = true;
 
 function passwordReestablish(obj) {
     let objInfo = obj.getBoundingClientRect();
@@ -95,3 +92,34 @@ function createTest() {
     let numbers = $(".test-creation-window-input")[0].value.split(" ").map(numStr => parseInt(numStr)).filter(num => num);
     console.log(numbers);
 }
+
+$(document).on("click", (event) => {
+    if ($(event.target).hasClass("cod-number") && codNumberClickActive) {
+        let number = parseInt($(event.target)[0].innerHTML);
+        if ($(event.target).hasClass("active")) {
+            $(event.target)[0].classList.remove("active");
+            current_cods = current_cods.filter(num => num !== number)
+        }
+        else {
+            $(event.target)[0].classList.add("active");
+            current_cods.push(number)
+        }
+
+        codNumberClickActive = false;
+        setTimeout(() => codNumberClickActive = true, 100);
+        let objChildrens = $(".learn-page-blocks").children();
+
+        for (let i=0; i < objChildrens.length; i++) {
+            $(objChildrens[i]).css({"display": "block"});
+        }
+        if (current_cods.length > 0) {
+            for (let i=0; i < objChildrens.length; i++) {
+                if (!(current_cods.includes(parseInt($(objChildrens[i]).data("number"))))) {
+                    $(objChildrens[i]).css({"display": "none"});
+                }
+            }
+        }
+    }
+});
+
+
