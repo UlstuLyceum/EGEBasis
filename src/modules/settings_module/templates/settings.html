@@ -1,0 +1,36 @@
+{% extends "base2.html" %}
+
+{% block content %}
+    <div class="settings-change-password-block">
+        <div class="settings-change-password-block-label">Сменить пароль:</div>
+        <input class="settings-change-password-block-old-password-input" placeholder="Старый пароль" type="password">
+        <input class="settings-change-password-block-new-password-input" placeholder="Новый пароль" type="password">
+    </div>
+    <div class="settings-choose-subject-block">
+        <div class="settings-choose-subject--block-label">Выбрать тип математики:</div>
+        {% if not user_math_type %}
+            <div class="settings-choose-subject--block-choice-block">
+                <div class="settings-choose-subject--block-choice-block__element e1">
+                    <input id="basic" type="radio" name="math_type" value="0" checked>
+                    <label for="basic">Базовая</label>
+                </div>
+                <div class="settings-choose-subject--block-choice-block__element e2">
+                    <input id="pro" type="radio" name="math_type" value="1">
+                    <label for="pro">Профильная</label>
+                </div>
+            </div>
+        {% else %}
+            <div class="settings-choose-subject--block-choice-block e1">
+                <div class="settings-choose-subject--block-choice-block__element">
+                    <input id="basic" type="radio" name="math_type" value="0" checked>
+                    <label for="basic">Базовая</label>
+                </div>
+                <div class="settings-choose-subject--block-choice-block__element e2">
+                    <input id="pro" type="radio" name="math_type" value="1">
+                    <label for="pro">Профильная</label>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    <input class="settings-save-button" type="submit" value="Сохранить изменения">
+{% endblock %}
