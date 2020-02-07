@@ -131,10 +131,13 @@ function checkTaskAnswer(obj) {
     let rightAnswers = String($(obj).data("answers")).split(" ");
     let userAnswer = $(obj).prev()[0].value;
     if (rightAnswers.includes(userAnswer)) {
-        $(obj).prev().css({"border": "2px solid #2ecc71"})
+        $(obj).prev().css({"border": "2px solid #2ecc71"});
+        $.post("/api/task_done", {
+            task_id: $(obj).data("id")
+        });
     }
     else {
-        $(obj).prev().css({"border": "2px solid #f74a5a"})
+        $(obj).prev().css({"border": "2px solid #f74a5a"});
     }
 }
 
