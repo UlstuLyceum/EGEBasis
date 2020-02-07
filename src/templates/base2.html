@@ -13,11 +13,11 @@
 <body>
 <div class="test-creation-window">
     <div class="test-creation-window-pointer"></div>
-    <div class="test-creation-window__content">
+    <form action="{{ url_for('practice.app_logged_in', subj_name=current_subj) }}" method="get" class="test-creation-window__content">
         <div class="test-creation-window-label">Впишите номера заданий, которые хотите исключить:</div>
-        <input type="text" class="test-creation-window-input" placeholder="1 2 3 12">
-        <div class="test-creation-window-button" onclick="createTest()">Начать</div>
-    </div>
+        <input type="text" name="exclude" class="test-creation-window-input" placeholder="1 2 3 12">
+        <input type="submit" value="Начать" class="test-creation-window-button" onclick="createTest()">
+    </form>
 </div>
 <div class="base2-menu">
     <div class="base2-aside {{ self._TemplateReference__context.name[:-5] }}-page-aside">
@@ -30,7 +30,7 @@
                 <a id="learn" class="base2-aside-controls__element_wrapper" href="{{ url_for('learn.app_logged_in', subj_name=current_subj) }}">
                     <img class="base2-aside-controls__element learn" src="{{ url_for('static', filename='img/read_icon.png') }}">
                 </a>
-                <a id="practice" class="base2-aside-controls__element_wrapper" href="#">
+                <a id="practice" class="base2-aside-controls__element_wrapper" href="{{ url_for('practice.app_logged_in', subj_name=current_subj) }}">
                     <img class="base2-aside-controls__element practice" src="{{ url_for('static', filename='img/create_icon.png') }}">
                 </a>
                 <a id="settings" class="base2-aside-controls__element_wrapper" href="#">
