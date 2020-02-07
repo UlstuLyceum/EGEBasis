@@ -58,10 +58,7 @@ def task_theory(subj_name, task_id):
         subject_list=subject_list,
         task_id=task_id,
         cods=list(task_type.cods),
-        task_description=task_type.description
-        # task_description="В задании нужно прочитать текст и выбрать варианты ответов, которые наиболее точно передают "
-        # "его главную мысль. В данном задании всегда два варианта ответа. За правильный даётся один "
-        # "первичный балл.",
+        task_description=task_type.description,
     )
 
 
@@ -82,6 +79,7 @@ def task_practice(subj_name, task_id):
             text = task.text.fetch().body
         tasks.append(
             {
+                "id": str(task.id),
                 "number": task_type.number,
                 "description": eval('"' + task.description + '"'),
                 "text": text,

@@ -1,0 +1,20 @@
+{% extends "base2.html" %}
+
+{% block content %}
+    <form action="{{ url_for('practice.results', subj_name=current_subj) }}" method="post">
+        {% for task in tasks %}
+            <div>
+                <p>{{task["number"]}}</p>
+                <p>{{task["description"]}}</p>
+                {% if task["text"] != None %}
+                    <p>{{task["text"]}}</p>
+                {% endif %}
+                {% for opt in task["options"] %}
+                    <p>{{ opt }}</p>
+                {% endfor %}
+                <input type="text" name="task{{ task['number'] }}">
+            </div>
+        {% endfor %}
+        <input type="submit" value="Завершить">
+    </form>
+{% endblock %}

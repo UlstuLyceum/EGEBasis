@@ -1,7 +1,8 @@
+from bson.objectid import ObjectId
 from flask import Blueprint, request
 
 from src.lib import get_current_user
-from src.models import Subject, TaskType, TaskTypeLink
+from src.models import Subject, Task, TaskLink, TaskType, TaskTypeLink
 
 api = Blueprint("api", __name__)
 
@@ -32,5 +33,8 @@ def task_done():
     user = get_current_user()
     if user is None:
         return "No user context"
-    # TODO process
+    task_id = request.form["task_id"]
+    task = Task.find_one({"id": ObjectId(task_id)})
+    tasklink = TaskLink(user=user, task=task, done=True)
+    tasklink.commit()
     return "Query ok"
