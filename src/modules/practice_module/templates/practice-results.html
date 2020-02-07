@@ -1,0 +1,49 @@
+{% extends "base2.html" %}
+
+{% block content %}
+    <div class="test-practice-results-block">
+        {% for task in tasks %}
+            {% if task["user_answer"] in task["answers"] %}
+                <div class="test-practice-results-block__element right">
+                    <div class="test-practice-results-block__element-info">
+                        <div class="test-practice-results-block__element-number right">{{ task["number"] }}</div>
+                        <div class="test-practice-results-block__element-description">{{ task["description"] }}</div>
+                    </div>
+                    {% if task["text"] %}
+                        <div class="test-practice-results-block__element-text right">{{ task["text"] }}</div>
+                    {% endif %}
+                    {% if task["options"] %}
+                        <div class="test-practice-results-block__element-options">
+                            {% for option in task["options"] %}
+                                <div class="test-practice-results-block__element-option">{{ option }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <input class="test-practice-results-block__element-input right" disabled name="task{{ task['number'] }}" placeholder="Вы не ответили на данное задание" value="{{ task["user_answer"] }}">
+                </div>
+            {% else %}
+                <div class="test-practice-results-block__element wrong">
+                    <div class="test-practice-results-block__element-info">
+                        <div class="test-practice-results-block__element-number wrong">{{ task["number"] }}</div>
+                        <div class="test-practice-results-block__element-description">{{ task["description"] }}</div>
+                    </div>
+                    {% if task["text"] %}
+                        <div class="test-practice-results-block__element-text wrong">{{ task["text"] }}</div>
+                    {% endif %}
+                    {% if task["options"] %}
+                        <div class="test-practice-results-block__element-options">
+                            {% for option in task["options"] %}
+                                <div class="test-practice-results-block__element-option">{{ option }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <input class="test-practice-results-block__element-input wrong" disabled name="task{{ task['number'] }}" placeholder="Вы не ответили на данное задание" value="{{ task["user_answer"] }}">
+                    <div class="test-practice-results-block__element-hidden">
+                        <div class="test-practice-results-block__element-answer">Ответ: {{ " или ".join(task["answers"]) }}</div>
+                        <div class="test-practice-results-block__element-explanation">{{ task["explanation"] }}</div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}
