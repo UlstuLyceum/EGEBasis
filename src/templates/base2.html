@@ -33,7 +33,7 @@
                 <a id="practice" class="base2-aside-controls__element_wrapper" href="{{ url_for('practice.app_logged_in', subj_name=current_subj) }}">
                     <img class="base2-aside-controls__element practice" src="{{ url_for('static', filename='img/create_icon.png') }}">
                 </a>
-                <a id="settings" class="base2-aside-controls__element_wrapper" href="#">
+                <a id="settings" class="base2-aside-controls__element_wrapper" href="{{ url_for('settings.settings_page') }}">
                     <img class="base2-aside-controls__element settings" src="{{ url_for('static', filename='img/settings_icon.png') }}">
                 </a>
             </div>

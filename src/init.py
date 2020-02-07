@@ -26,12 +26,14 @@ from src.modules.auth_module.auth import auth
 from src.modules.tasks_module.tasks import tasks
 from src.modules.learn_module.learn import learn
 from src.modules.practice_module.practice import practice
+from src.modules.settings_module.settings import settings
 from src.modules.api_module.api import api
 
 app.register_blueprint(auth)
 app.register_blueprint(tasks)
 app.register_blueprint(learn)
 app.register_blueprint(practice)
+app.register_blueprint(settings)
 app.register_blueprint(api)
 
 

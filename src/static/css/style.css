@@ -850,3 +850,74 @@ a, button, input {
 .task-practice-block__element-explanation {
     margin: 5px 0 0 0;
 }
+.settings-page-content {
+    display: flex;
+    flex-direction: column;
+}
+.settings-change-password-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 350px;
+}
+.settings-choose-subject-block {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    margin: 40px 0 0 0;
+}
+.settings-change-password-block-label, .settings-choose-subject--block-label {
+    font-weight: 600;
+    font-size: 22px;
+}
+.settings-change-password-block-old-password-input, .settings-change-password-block-new-password-input {
+    background-color: #ecedf1;
+    border: none;
+    height: 40px;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 100px;
+    padding: 0 0 0 15px;
+    margin: 7px 0 0 0;
+}
+.settings-change-password-block-old-password-input {
+    margin: 20px 0 0 0;
+}
+.settings-save-button {
+    transition: ease 300ms;
+    background-color: #955bff;
+    color: #fff;
+    height: 40px;
+    width: 350px;
+    font-size: 13px;
+    border-radius: 100px;
+    border: 2px solid #955bff;
+    margin: 40px 0 0 0;
+}
+.settings-save-button:hover {
+    background-color: #fff;
+    color: #955bff;
+}
+.settings-choose-subject--block-choice-block {
+    display: flex;
+    margin: 20px 0 0 0;
+}
+.settings-choose-subject--block-choice-block__element {
+    font-size: 13px;
+    font-weight: 500;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+}
+.settings-choose-subject--block-choice-block__element.e2 {
+    margin: 0 0 0 20px;
+}
+.settings-choose-subject--block-choice-block__element label {
+    color: #929396;
+    margin: 0 0 0 5px;
+}
+.settings-page-content input[type="radio"]:after {
+    border: 2px solid #955bff;
+    background-color: #955bff;
+    color: #955bff;
+}
