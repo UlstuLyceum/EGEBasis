@@ -94,7 +94,7 @@ $(document).on("click", (event) => {
 });
 
 function createTest() {
-    let numbers = $(".test-creation-window-input")[0].value.split(" ").map(numStr => parseInt(numStr)).filter(num => num);
+    let numbers = $(".test-creation-window-input")[0].value.split(" ")
     console.log(numbers);
 }
 
