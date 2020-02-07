@@ -5,7 +5,7 @@ from flask import Blueprint, request, session, url_for
 from werkzeug.utils import redirect
 
 from src.lib import get_current_user, render
-from src.models import Subject, Task, TaskType
+from src.models import Subject, Task, TaskLink, TaskType
 
 practice = Blueprint("practice", __name__, template_folder="templates")
 
@@ -18,6 +18,7 @@ def app_logged_in(subj_name):
     exclude = request.args.get("exclude", "").split()
     subject = Subject.find_one({"name": subj_name})
     task_types = TaskType.find({"subject": subject.id})
+    subject_list = list(Subject.find({"hidden": False}))
     tasks = []
     for tt in task_types:
         if tt.number in exclude:
@@ -36,7 +37,15 @@ def app_logged_in(subj_name):
                 "options": task.options,
             }
         )
-    return render("test.html", tasks=tasks, current_subj=subj_name)
+    return render(
+        "practice.html",
+        title="Тест",
+        header_label="Тест в формате ЕГЭ",
+        current_subj=subj_name,
+        current_mode="practice",
+        subject_list=subject_list,
+        tasks=tasks,
+    )
 
 
 @practice.route("/<subj_name>/results", methods=["POST"])
@@ -47,20 +56,38 @@ def results(subj_name):
     tasks = []
     right = 0
     all = 0
+    subject_list = list(Subject.find({"hidden": False}))
     for q in request.form:
         number = q[4:]
         answer = request.form[q]
         all += 1
         task = Task.find_one({"id": ObjectId(session[q])})
+        tl = TaskLink.find_one({"task": task.id, "user": user.id})
+        text = None
+        if task.text.pk is not None:
+            text = task.text.fetch().body
         tasks.append(
             {
-                "number": number,
                 "user_answer": answer,
-                "right_answer": list(task.answers),
+                "number": number,
+                "description": eval('"' + task.description + '"'),
+                "text": text,
+                "options": task.options,
+                "done": tl.done if tl else False,
+                "answers": task.answers,
+                "explanation": task.explanation,
             }
         )
         if answer in task.answers:
             right += 1
     return render(
-        "results.html", current_subj=subj_name, tasks=tasks, right=right, all=all
+        "practice-results.html",
+        title="Ответы на тест",
+        header_label="Тест в формате ЕГЭ",
+        current_subj=subj_name,
+        current_mode="tasks",
+        subject_list=subject_list,
+        tasks=tasks,
+        right=right,
+        all=all
     )
