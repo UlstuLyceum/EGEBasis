@@ -1019,3 +1019,31 @@ a, button, input {
 .test-practice-results-block__element-number.wrong, .test-practice-results-block__element-text.wrong {
     background-color: #f74a5a38;
 }
+.test-practice-statistic-block {
+    display: flex;
+    justify-content: space-around;
+    border: 3px solid #955bff;
+    align-items: center;
+    border-radius: 25px;
+    width: 100%;
+    height: 100px;
+    margin: 0 0 50px 0;
+}
+.test-practice-statistic-block__element {
+    display: flex;
+    border-radius: 25px;
+    flex-direction: column;
+    align-items: center;
+}
+.test-practice-statistic-block__element-value {
+    color: #955bff;
+    font-size: 17px;
+    font-weight: 500;
+}
+.test-practice-statistic-block__element-label {
+    font-size: 13px;
+    margin: 5px 0 0 0;
+}
+.test-time-counter {
+    display: none;
+}

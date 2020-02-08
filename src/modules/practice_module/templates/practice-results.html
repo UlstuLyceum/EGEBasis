@@ -1,6 +1,24 @@
 {% extends "base2.html" %}
 
 {% block content %}
+    <div class="test-practice-statistic-block">
+        <div class="test-practice-statistic-block__element">
+            <div class="test-practice-statistic-block__element-value">{{ time }}</div>
+            <div class="test-practice-statistic-block__element-label">Потрачено на тест</div>
+        </div>
+        <div class="test-practice-statistic-block__element">
+            <div class="test-practice-statistic-block__element-value">{{ right }} / {{ all }}</div>
+            <div class="test-practice-statistic-block__element-label">Правильных ответов</div>
+        </div>
+    <div class="test-practice-statistic-block__element">
+            <div class="test-practice-statistic-block__element-value">{{ first_points }}</div>
+            <div class="test-practice-statistic-block__element-label">Первчиных баллов</div>
+        </div>
+    <div class="test-practice-statistic-block__element">
+            <div class="test-practice-statistic-block__element-value">{{ second_points }}</div>
+            <div class="test-practice-statistic-block__element-label">Вторичных баллов</div>
+        </div>
+    </div>
     <div class="test-practice-results-block">
         {% for task in tasks %}
             {% if task["user_answer"] in task["answers"] %}

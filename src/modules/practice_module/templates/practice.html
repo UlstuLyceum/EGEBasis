@@ -23,6 +23,12 @@
                 </div>
             {% endfor %}
         </div>
-        <input class="test-end-button" type="submit" value="Завершить">
+        <input class="test-end-button" type="submit" value="Завершить" onsubmit="countTime(this)">
+        <input name="time_counter" class="test-time-counter" type="text" value="0">
     </form>
+    <script>
+        let intervalId = setInterval(() => {
+            $(".test-time-counter")[0].value++;
+        }, 1000)
+    </script>
 {% endblock %}

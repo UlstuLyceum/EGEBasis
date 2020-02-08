@@ -1,3 +1,4 @@
+import time
 from random import choice
 
 from bson.objectid import ObjectId
@@ -56,30 +57,35 @@ def results(subj_name):
     tasks = []
     right = 0
     all = 0
+    test_time = int(request.form["time_counter"])
+    test_time = time.strftime('%H:%M:%S', time.gmtime(test_time))
     subject_list = list(Subject.find({"hidden": False}))
+    first_points = 0
     for q in request.form:
-        number = q[4:]
-        answer = request.form[q]
-        all += 1
-        task = Task.find_one({"id": ObjectId(session[q])})
-        tl = TaskLink.find_one({"task": task.id, "user": user.id})
-        text = None
-        if task.text.pk is not None:
-            text = task.text.fetch().body
-        tasks.append(
-            {
-                "user_answer": answer,
-                "number": number,
-                "description": eval('"' + task.description + '"'),
-                "text": text,
-                "options": task.options,
-                "done": tl.done if tl else False,
-                "answers": task.answers,
-                "explanation": task.explanation,
-            }
-        )
-        if answer in task.answers:
-            right += 1
+        if q != "time_counter":
+            number = q[4:]
+            answer = request.form[q]
+            all += 1
+            task = Task.find_one({"id": ObjectId(session[q])})
+            tl = TaskLink.find_one({"task": task.id, "user": user.id})
+            text = None
+            if task.text.pk is not None:
+                text = task.text.fetch().body
+            tasks.append(
+                {
+                    "user_answer": answer,
+                    "number": number,
+                    "description": eval('"' + task.description + '"'),
+                    "text": text,
+                    "options": task.options,
+                    "done": tl.done if tl else False,
+                    "answers": task.answers,
+                    "explanation": task.explanation,
+                }
+            )
+            if answer in task.answers:
+                first_points += points["russian"]["first"][int(number)]
+                right += 1
     return render(
         "practice-results.html",
         title="Ответы на тест",
@@ -89,5 +95,21 @@ def results(subj_name):
         subject_list=subject_list,
         tasks=tasks,
         right=right,
-        all=all
+        all=all,
+        time=test_time,
+        first_points=first_points,
+        second_points=points["russian"]["second"][first_points]
     )
+
+
+points = {
+    "russian": {
+        "first": [
+            0, 1, 1, 1, 1, 1, 1, 1, 5, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4
+        ],
+        "second": [
+            0, 3, 5, 8, 10, 12, 15, 17, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 39, 40, 41, 43, 44, 45, 46, 48, 49, 50,
+            51, 53, 54, 55, 56, 57, 59, 60
+        ]
+    }
+}
