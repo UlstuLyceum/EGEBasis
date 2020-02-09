@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, url_for
+from flask import Blueprint, abort, redirect, url_for
 from werkzeug.utils import redirect
 
 from src.lib import get_current_user, render
@@ -102,6 +102,8 @@ def app_logged_in(subj_name):
     if get_current_user() is None:
         return redirect(url_for("index"))
     subject_list = list(Subject.find({"hidden": False}))
+    if subj_name not in [sub["name"] for sub in subject_list]:
+        abort(404)
     return render(
         "learn.html",
         title="Теория",

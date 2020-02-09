@@ -14,6 +14,9 @@ tasks = Blueprint("tasks", __name__, template_folder="templates")
 
 @tasks.route("/<subj_name>")
 def subj_main(subj_name):
+    subject_list = list(Subject.find({"hidden": False}))
+    if subj_name not in [sub["name"] for sub in subject_list]:
+        abort(404)
     return redirect(url_for("tasks.app_logged_in", subj_name=subj_name))
 
 
@@ -22,6 +25,8 @@ def app_logged_in(subj_name):
     if get_current_user() is None:
         return redirect(url_for("index"))
     subject_list = list(Subject.find({"hidden": False}))
+    if subj_name not in [sub["name"] for sub in subject_list]:
+        abort(404)
     subject = Subject.find_one({"name": subj_name})
     tasks_list = []
     raw_tasks = TaskType.find({"subject": subject.id})

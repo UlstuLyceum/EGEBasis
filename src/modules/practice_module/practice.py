@@ -17,10 +17,12 @@ def app_logged_in(subj_name):
     user = get_current_user()
     if user is None:
         return redirect(url_for("index"))
+    subject_list = list(Subject.find({"hidden": False}))
+    if subj_name not in [sub["name"] for sub in subject_list]:
+        abort(404)
     exclude = request.args.get("exclude", "").split()
     subject = Subject.find_one({"name": subj_name})
     task_types = TaskType.find({"subject": subject.id})
-    subject_list = list(Subject.find({"hidden": False}))
     tasks = []
     for tt in task_types:
         if tt.number in exclude:
