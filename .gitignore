@@ -109,3 +109,4 @@ venv.bak/
 # project-specific configuration files
 src/local_config.py
 db_test.py
+src/modules/learn_module/.DS_Store

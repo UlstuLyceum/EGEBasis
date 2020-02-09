@@ -1,6 +1,7 @@
-from flask import Blueprint
+from flask import Blueprint, url_for
+from werkzeug.utils import redirect
 
-from src.lib import render
+from src.lib import render, get_current_user
 from src.models import Subject
 
 learn = Blueprint("learn", __name__, template_folder="templates")
@@ -43,6 +44,8 @@ subject["cods"] = list(
 
 @learn.route("/<subj_name>/learn")
 def app_logged_in(subj_name):
+    if get_current_user() is None:
+        return redirect(url_for('index'))
     subject_list = list(Subject.find({"hidden": False}))
     return render(
         "learn.html",
