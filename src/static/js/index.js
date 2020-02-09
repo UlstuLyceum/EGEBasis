@@ -33,7 +33,7 @@ $(document).on("click", (event) => {
 });
 
 $(document).on("click", (event) => {
-    if ($(event.target).hasClass("task-block-status")){
+    if ($(event.target).hasClass("task-block-status")) {
         event.preventDefault();
         let objCoords = $(event.target)[0].getBoundingClientRect();
         let windowCoords = $(".status-change-window")[0].getBoundingClientRect();
@@ -41,6 +41,32 @@ $(document).on("click", (event) => {
         $(".status-change-window").css({
             "top": objCoords.y - windowCoords.height / 2 + objCoords.height / 2 + $(window).scrollTop() + "px",
             "left": objCoords.x - windowCoords.width + "px",
+            "z-index": "0",
+            "opacity": "0"
+        });
+        let windowInfo = $(".status-change-window")[0].getBoundingClientRect();
+        if (windowInfo.y <= 125) {
+            $(".status-change-window").css({
+                "top": objCoords.y - windowCoords.height / 2 + objCoords.height / 2 + $(window).scrollTop() + 50 + "px",
+            });
+            $(".status-change-window-pointer").css({
+                "margin": "-100px 0 0 -10px"
+            });
+        }
+        else if ($(window).height() - windowInfo.bottom <= 0) {
+            $(".status-change-window").css({
+                "top": objCoords.y - windowCoords.height / 2 + objCoords.height / 2 + $(window).scrollTop() - 50 + "px",
+            });
+            $(".status-change-window-pointer").css({
+                "margin": "0 0 -100px -10px"
+            });
+        }
+        else {
+            $(".status-change-window-pointer").css({
+                "margin": "0 0 0 -10px"
+            });
+        }
+        $(".status-change-window").css({
             "z-index": "2",
             "opacity": "1"
         });
@@ -94,7 +120,7 @@ $(document).on("click", (event) => {
 });
 
 function createTest() {
-    let numbers = $(".test-creation-window-input")[0].value.split(" ")
+    let numbers = $(".test-creation-window-input")[0].value.split(" ");
     console.log(numbers);
 }
 

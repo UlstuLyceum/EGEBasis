@@ -1,21 +1,25 @@
 {% extends "base2.html" %}
 
 {% block content %}
-    <div class="task-page-controls">
-        <div class="task-page-label">Задание {{ task_id }}</div>
-        <a class="task-page-button" href="{{ url_for('tasks.task_practice', subj_name=current_subj, task_id=task_id) }}">Решать задачи</a>
-    </div>
-    <div class="task-page-info">
-        <div class="task-page-info-cods">
+    {% if current_subj == "russian" %}
+        <div class="task-page-controls">
+            <div class="task-page-label">Задание {{ task_id }}</div>
+            <a class="task-page-button" href="{{ url_for('tasks.task_practice', subj_name=current_subj, task_id=task_id) }}">Решать задачи</a>
+        </div>
+        <div class="task-page-info">
+            <div class="task-page-info-cods">
+                {% for cod in cods %}
+                    <div class="task-page-info-cods__element">{{ cod }}</div>
+                {% endfor %}
+            </div>
+            <div class="task-page-info-description">{{ task_description }}</div>
+        </div>
+        <div class="task-page-blocks">
             {% for cod in cods %}
-                <div class="task-page-info-cods__element">{{ cod }}</div>
+                {% include "/cods/russian_" + cod.replace(".", "-") + ".html" %}
             {% endfor %}
         </div>
-        <div class="task-page-info-description">{{ task_description }}</div>
-    </div>
-    <div class="task-page-blocks">
-        {% for cod in cods %}
-            {% include "/cods/russian_" + cod.replace(".", "-") + ".html" %}
-        {% endfor %}
-    </div>
+    {% else %}
+        <div class="coming-soon">Данный раздел пока находится в разработке!</div>
+    {% endif %}
 {% endblock %}
