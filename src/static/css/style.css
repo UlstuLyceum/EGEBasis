@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300б300i,400,400i,500,500i,600&display=swap&subset=cyrillic');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600&display=swap&subset=cyrillic');
 
 html {
     color: #25252d;
@@ -7,6 +7,9 @@ html {
 }
 a, button, input {
     outline: none!important;
+}
+body {
+    transition: ease 300ms;
 }
 .login-page-header, .signup-page-header, .finishSignup-page-header {
     display: flex;
@@ -1022,7 +1025,7 @@ a, button, input {
 .test-practice-statistic-block {
     display: flex;
     justify-content: space-around;
-    border: 3px solid #955bff;
+    background-color: #ecedf1;
     align-items: center;
     border-radius: 25px;
     width: 100%;
@@ -1030,13 +1033,13 @@ a, button, input {
     margin: 0 0 50px 0;
 }
 .test-practice-statistic-block__element {
+    color: #25252d;
     display: flex;
     border-radius: 25px;
     flex-direction: column;
     align-items: center;
 }
 .test-practice-statistic-block__element-value {
-    color: #955bff;
     font-size: 17px;
     font-weight: 500;
 }
@@ -1046,4 +1049,9 @@ a, button, input {
 }
 .test-time-counter {
     display: none;
+}
+.coming-soon {
+    text-align: center;
+    font-size: 20px;
+    color: #898996;
 }

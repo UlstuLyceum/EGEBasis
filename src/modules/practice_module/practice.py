@@ -1,8 +1,9 @@
 import time
 from random import choice
 
+import flask
 from bson.objectid import ObjectId
-from flask import Blueprint, request, session, url_for
+from flask import Blueprint, request, session, url_for, abort
 from werkzeug.utils import redirect
 
 from src.lib import get_current_user, render
@@ -49,8 +50,10 @@ def app_logged_in(subj_name):
     )
 
 
-@practice.route("/<subj_name>/results", methods=["POST"])
+@practice.route("/<subj_name>/results", methods=["POST", "GET"])
 def results(subj_name):
+    if flask.request.method == "GET":
+        abort(404)
     user = get_current_user()
     if user is None:
         return redirect(url_for("index"))
@@ -84,7 +87,7 @@ def results(subj_name):
                 }
             )
             if answer in task.answers:
-                first_points += points["russian"]["first"][int(number)]
+                first_points += points[subj_name]["first"][int(number)]
                 right += 1
     return render(
         "practice-results.html",
@@ -98,7 +101,7 @@ def results(subj_name):
         all=all,
         time=test_time,
         first_points=first_points,
-        second_points=points["russian"]["second"][first_points]
+        second_points=points[subj_name]["second"][first_points]
     )
 
 

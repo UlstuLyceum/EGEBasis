@@ -1,17 +1,21 @@
 {% extends "base2.html" %}
 
 {% block content %}
+    {% if current_subj == "russian" %}
     <div class="learn-page-controls">
-        <div class="learn-page-code-numbers" data-amount="{{ cod_amount }}">
-            {% for num in range(1, cod_amount + 1) %}
-                <div class="learn-page-code-numbers__element cod-number">{{ num }}</div>
+            <div class="learn-page-code-numbers" data-amount="{{ cod_amount }}">
+                {% for num in range(1, cod_amount + 1) %}
+                    <div class="learn-page-code-numbers__element cod-number">{{ num }}</div>
+                {% endfor %}
+            </div>
+            <input type="text" class="learn-page-search-form" placeholder="Поиск">
+        </div>
+        <div class="learn-page-blocks">
+            {% for cod in cods %}
+                {% include "cods/russian_" + cod + ".html" %}
             {% endfor %}
         </div>
-        <input type="text" class="learn-page-search-form" placeholder="Поиск">
-    </div>
-    <div class="learn-page-blocks">
-        {% for cod in cods %}
-            {% include "cods/russian_" + cod + ".html" %}
-        {% endfor %}
-    </div>
+    {% else %}
+        <div class="coming-soon">Данный раздел пока находится в разработке!</div>
+    {% endif %}
 {% endblock %}

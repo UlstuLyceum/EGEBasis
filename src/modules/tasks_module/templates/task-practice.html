@@ -1,33 +1,37 @@
 {% extends "base2.html" %}
 
 {% block content %}
-    <div class="task-practice-block">
-        {% for task in tasks %}
-            <div class="task-practice-block__element">
-                <div class="task-practice-block__element-info">
-                    <div class="task-practice-block__element-number">{{ task["number"] }}</div>
-                    <div class="task-practice-block__element-description">{{ task["description"] }}</div>
-                </div>
-                {% if task["text"] %}
-                    <div class="task-practice-block__element-text">{{ task["text"] }}</div>
-                {% endif %}
-                {% if task["options"] %}
-                    <div class="task-practice-block__element-options">
-                        {% for option in task["options"] %}
-                            <div class="task-practice-block__element-option">{{ option }}</div>
-                        {% endfor %}
+    {% if current_subj == "russian" %}
+        <div class="task-practice-block">
+            {% for task in tasks %}
+                <div class="task-practice-block__element">
+                    <div class="task-practice-block__element-info">
+                        <div class="task-practice-block__element-number">{{ task["number"] }}</div>
+                        <div class="task-practice-block__element-description">{{ task["description"] }}</div>
                     </div>
-                {% endif %}
-                <div class="task-practice-block__element-controls">
-                    <input class="task-practice-block__element-input" placeholder="Ответ">
-                    <div class="task-practice-block__element-check-button" data-answers="{{ " ".join(task["answers"]) }}" data-id="{{ task["id"] }}" onclick="checkTaskAnswer(this)">Проверить</div>
-                    <div class="task-practice-block__element-show-answer-button" onclick="showTaskAnswer(this)">Показать ответ</div>
+                    {% if task["text"] %}
+                        <div class="task-practice-block__element-text">{{ task["text"] }}</div>
+                    {% endif %}
+                    {% if task["options"] %}
+                        <div class="task-practice-block__element-options">
+                            {% for option in task["options"] %}
+                                <div class="task-practice-block__element-option">{{ option }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <div class="task-practice-block__element-controls">
+                        <input class="task-practice-block__element-input" placeholder="Ответ">
+                        <div class="task-practice-block__element-check-button" data-answers="{{ " ".join(task["answers"]) }}" data-id="{{ task["id"] }}" onclick="checkTaskAnswer(this)">Проверить</div>
+                        <div class="task-practice-block__element-show-answer-button" onclick="showTaskAnswer(this)">Показать ответ</div>
+                    </div>
+                    <div class="task-practice-block__element-hidden">
+                        <div class="task-practice-block__element-answer">Ответ: {{ " или ".join(task["answers"]) }}</div>
+                        <div class="task-practice-block__element-explanation">{{ task["explanation"] }}</div>
+                    </div>
                 </div>
-                <div class="task-practice-block__element-hidden">
-                    <div class="task-practice-block__element-answer">Ответ: {{ " или ".join(task["answers"]) }}</div>
-                    <div class="task-practice-block__element-explanation">{{ task["explanation"] }}</div>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="coming-soon">Данный раздел пока находится в разработке!</div>
+    {% endif %}
 {% endblock %}

@@ -45,3 +45,8 @@ def index():
     if user is None:
         return redirect(url_for("auth.login"))
     return redirect(url_for("tasks.app_logged_in", subj_name="russian"))
+
+
+@app.errorhandler(404)
+def not_found(e):
+    return render_template("404.html")
