@@ -12,7 +12,7 @@ from src.models import Subject, Task, TaskLink, TaskType
 tasks = Blueprint("tasks", __name__, template_folder="templates")
 
 
-@tasks.route('/<subj_name>')
+@tasks.route("/<subj_name>")
 def subj_main(subj_name):
     return redirect(url_for("tasks.app_logged_in", subj_name=subj_name))
 

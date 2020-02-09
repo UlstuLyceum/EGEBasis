@@ -1,7 +1,7 @@
 from flask import Blueprint, redirect, url_for
 from werkzeug.utils import redirect
 
-from src.lib import render, get_current_user
+from src.lib import get_current_user, render
 from src.models import Subject
 
 learn = Blueprint("learn", __name__, template_folder="templates")

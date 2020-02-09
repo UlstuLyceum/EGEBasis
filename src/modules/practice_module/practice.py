@@ -61,7 +61,7 @@ def results(subj_name):
     right = 0
     all = 0
     test_time = int(request.form["time_counter"])
-    test_time = time.strftime('%H:%M:%S', time.gmtime(test_time))
+    test_time = time.strftime("%H:%M:%S", time.gmtime(test_time))
     subject_list = list(Subject.find({"hidden": False}))
     first_points = 0
     for q in request.form:
@@ -108,11 +108,71 @@ def results(subj_name):
 points = {
     "russian": {
         "first": [
-            0, 1, 1, 1, 1, 1, 1, 1, 5, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            5,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            4,
         ],
         "second": [
-            0, 3, 5, 8, 10, 12, 15, 17, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 39, 40, 41, 43, 44, 45, 46, 48, 49, 50,
-            51, 53, 54, 55, 56, 57, 59, 60
-        ]
+            0,
+            3,
+            5,
+            8,
+            10,
+            12,
+            15,
+            17,
+            20,
+            22,
+            24,
+            26,
+            28,
+            30,
+            32,
+            34,
+            36,
+            38,
+            39,
+            40,
+            41,
+            43,
+            44,
+            45,
+            46,
+            48,
+            49,
+            50,
+            51,
+            53,
+            54,
+            55,
+            56,
+            57,
+            59,
+            60,
+        ],
     }
 }
