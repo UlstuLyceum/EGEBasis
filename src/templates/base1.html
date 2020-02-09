@@ -9,11 +9,24 @@
     <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
 </head>
 <body>
-<div class="header {{ self._TemplateReference__context.name[:-5] }}-page-header">{% block header %}{% endblock %}</div>
-<div class="aside {{ self._TemplateReference__context.name[:-5] }}-page-aside">{% block aside %}{% endblock %}</div>
-<div class="content {{ self._TemplateReference__context.name[:-5] }}-page-content">{% block content %}{% endblock %}</div>
-<div class="footer {{ self._TemplateReference__context.name[:-5] }}-page-footer">{% block footer %}{% endblock %}</div>
-
+<div class="preloader__wrapper" style="z-index: 5; position: fixed; display: flex; justify-content: center; align-items: center; overflow: hidden; background-color: #fff; top: 0; left: 0; width: 100%; height: 100%; transition: ease 200ms;">
+    <img src="{{ url_for('static', filename='img/preloader.svg') }}" class="preloader">
+</div>
+<div class="body-content" style="opacity: 0">
+    <div class="header {{ self._TemplateReference__context.name[:-5] }}-page-header">{% block header %}{% endblock %}</div>
+    <div class="aside {{ self._TemplateReference__context.name[:-5] }}-page-aside">{% block aside %}{% endblock %}</div>
+    <div class="content {{ self._TemplateReference__context.name[:-5] }}-page-content">{% block content %}{% endblock %}</div>
+    <div class="footer {{ self._TemplateReference__context.name[:-5] }}-page-footer">{% block footer %}{% endblock %}</div>
+</div>
 <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<script>
+    setTimeout(() => {
+        $(".body-content").css({"opacity": "1"});
+        $(".preloader__wrapper").css({"opacity": "0"});
+        setTimeout(() => {
+            $(".preloader__wrapper").css({"z-index": "-1"});
+        }, 200);
+    }, 300);
+</script>
 </body>
 </html>
