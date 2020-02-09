@@ -12,6 +12,11 @@ from src.models import Subject, Task, TaskLink, TaskType
 tasks = Blueprint("tasks", __name__, template_folder="templates")
 
 
+@tasks.route('/<subj_name>')
+def subj_main(subj_name):
+    return redirect(url_for("tasks.app_logged_in", subj_name=subj_name))
+
+
 @tasks.route("/<subj_name>/tasks")
 def app_logged_in(subj_name):
     if get_current_user() is None:
@@ -46,7 +51,8 @@ def app_logged_in(subj_name):
 
 @tasks.route("/<subj_name>/task/<int:task_id>")
 def task_theory(subj_name, task_id):
-    if get_current_user() is None:
+    user = get_current_user()
+    if user is None:
         return redirect(url_for("index"))
     if subj_name != "russian":
         abort(404)

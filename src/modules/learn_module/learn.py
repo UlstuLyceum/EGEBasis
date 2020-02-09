@@ -1,4 +1,5 @@
 from flask import Blueprint, redirect, url_for
+from werkzeug.utils import redirect
 
 from src.lib import render, get_current_user
 from src.models import Subject
