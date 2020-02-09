@@ -1,36 +1,44 @@
 {% extends "base2.html" %}
 
 {% block content %}
-    <div class="settings-change-password-block">
-        <div class="settings-change-password-block-label">Сменить пароль:</div>
-        <input class="settings-change-password-block-old-password-input" placeholder="Старый пароль" type="password">
-        <input class="settings-change-password-block-new-password-input" placeholder="Новый пароль" type="password">
-    </div>
-    <div class="settings-choose-subject-block">
-        <div class="settings-choose-subject--block-label">Выбрать тип математики:</div>
-        {% if not user_math_type %}
-            <div class="settings-choose-subject--block-choice-block">
-                <div class="settings-choose-subject--block-choice-block__element e1">
-                    <input id="basic" type="radio" name="math_type" value="0" checked>
-                    <label for="basic">Базовая</label>
+    {% if bad_password %}
+        Вы ввели неверный пароль
+    {% endif %}
+    {% if ok %}
+        Настройки успешно изменены
+    {% endif %}
+    <form action="{{ url_for('settings.settings_page') }}" method="post">
+        <div class="settings-change-password-block">
+            <div class="settings-change-password-block-label">Сменить пароль:</div>
+            <input class="settings-change-password-block-old-password-input" placeholder="Старый пароль" type="password" name="oldpass">
+            <input class="settings-change-password-block-new-password-input" placeholder="Новый пароль" type="password" name="newpass">
+        </div>
+        <div class="settings-choose-subject-block">
+            <div class="settings-choose-subject--block-label">Выбрать тип математики:</div>
+            {% if user_math_type == 0 %}
+                <div class="settings-choose-subject--block-choice-block">
+                    <div class="settings-choose-subject--block-choice-block__element e1">
+                        <input id="basic" type="radio" name="math_type" value="0" checked>
+                        <label for="basic">Базовая</label>
+                    </div>
+                    <div class="settings-choose-subject--block-choice-block__element e2">
+                        <input id="pro" type="radio" name="math_type" value="1">
+                        <label for="pro">Профильная</label>
+                    </div>
                 </div>
-                <div class="settings-choose-subject--block-choice-block__element e2">
-                    <input id="pro" type="radio" name="math_type" value="1">
-                    <label for="pro">Профильная</label>
+            {% else %}
+                <div class="settings-choose-subject--block-choice-block e1">
+                    <div class="settings-choose-subject--block-choice-block__element">
+                        <input id="basic" type="radio" name="math_type" value="0">
+                        <label for="basic">Базовая</label>
+                    </div>
+                    <div class="settings-choose-subject--block-choice-block__element e2">
+                        <input id="pro" type="radio" name="math_type" value="1" checked>
+                        <label for="pro">Профильная</label>
+                    </div>
                 </div>
-            </div>
-        {% else %}
-            <div class="settings-choose-subject--block-choice-block e1">
-                <div class="settings-choose-subject--block-choice-block__element">
-                    <input id="basic" type="radio" name="math_type" value="0" checked>
-                    <label for="basic">Базовая</label>
-                </div>
-                <div class="settings-choose-subject--block-choice-block__element e2">
-                    <input id="pro" type="radio" name="math_type" value="1">
-                    <label for="pro">Профильная</label>
-                </div>
-            </div>
-        {% endif %}
-    </div>
-    <input class="settings-save-button" type="submit" value="Сохранить изменения">
+            {% endif %}
+        </div>
+        <input class="settings-save-button" type="submit" value="Сохранить изменения">
+    </form>
 {% endblock %}

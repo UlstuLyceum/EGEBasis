@@ -6,7 +6,7 @@ from src.models import Subject, Task, TaskType
 admin = Blueprint("admin", __name__, template_folder="templates")
 
 
-@admin.route('/admin', methods=["GET", "POST"])
+@admin.route("/admin", methods=["GET", "POST"])
 def admin_main():
     user = get_current_user()
     if user is None:
@@ -17,7 +17,9 @@ def admin_main():
     if request.method == "GET":
         return render("add-task.html", subjects=subjects)
     subject = Subject.find_one({"label": request.form["subject"]})
-    task_type = TaskType.find_one({"number": request.form["task_type"], "subject": subject.id})
+    task_type = TaskType.find_one(
+        {"number": request.form["task_type"], "subject": subject.id}
+    )
     description = request.form["description"]
     var1 = request.form["var1"]
     var2 = request.form["var2"]
@@ -37,6 +39,13 @@ def admin_main():
         options.append(var5)
     answers = request.form["answers"].replace(" ", "").split(",")
     explanation = request.form["explanation"]
-    task = Task(task_type=task_type, description=description, options=options, answers=answers, explanation=explanation, text=None)
+    task = Task(
+        task_type=task_type,
+        description=description,
+        options=options,
+        answers=answers,
+        explanation=explanation,
+        text=None,
+    )
     task.commit()
     return render("add-task.html", subjects=subjects, ok=True)
