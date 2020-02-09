@@ -3,7 +3,7 @@ from random import choice
 
 import flask
 from bson.objectid import ObjectId
-from flask import Blueprint, request, session, url_for, abort
+from flask import Blueprint, abort, request, session, url_for
 from werkzeug.utils import redirect
 
 from src.lib import get_current_user, render
@@ -101,7 +101,7 @@ def results(subj_name):
         all=all,
         time=test_time,
         first_points=first_points,
-        second_points=points[subj_name]["second"][first_points]
+        second_points=points[subj_name]["second"][first_points],
     )
 
 

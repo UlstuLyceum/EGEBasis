@@ -56,7 +56,7 @@ class Task(Document):
     options = fields.ListField(fields.StringField)
     answers = fields.ListField(fields.StringField)
     explanation = fields.StringField()
-    text = fields.ReferenceField(Text)
+    text = fields.ReferenceField(Text, allow_none=True)
 
 
 @instance.register

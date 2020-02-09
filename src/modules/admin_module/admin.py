@@ -1,3 +1,4 @@
+from bson.objectid import ObjectId
 from flask import Blueprint, request
 
 from src.lib import get_current_user, render
@@ -45,7 +46,7 @@ def admin_main():
         options=options,
         answers=answers,
         explanation=explanation,
-        text=None,
+        text=ObjectId("5e4066a91c9d440000785ec1"),
     )
     task.commit()
     return render("add-task.html", subjects=subjects, ok=True)
