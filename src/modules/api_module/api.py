@@ -44,7 +44,7 @@ def task_done():
         tasktypelink.done_tasks += 1
     else:
         tasktypelink = TaskTypeLink(
-            task_type=tasktype, user=user, done_tasks=0, status=0
+            task_type=tasktype, user=user, done_tasks=1, status=0
         )
     tasktypelink.commit()
     tasklink = TaskLink(user=user, task=task, done=True)
