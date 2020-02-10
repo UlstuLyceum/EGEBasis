@@ -1,7 +1,7 @@
 from bson.objectid import ObjectId
 from flask import Blueprint, request
 
-from src.lib import get_current_user
+from src.lib import count_percentage_on_task, get_current_user
 from src.models import Subject, Task, TaskLink, TaskType, TaskTypeLink
 
 api = Blueprint("api", __name__)
@@ -44,9 +44,21 @@ def task_done():
         tasktypelink.done_tasks += 1
     else:
         tasktypelink = TaskTypeLink(
-            task_type=tasktype, user=user, done_tasks=0, status=0
+            task_type=tasktype, user=user, done_tasks=1, status=0
         )
     tasktypelink.commit()
     tasklink = TaskLink(user=user, task=task, done=True)
     tasklink.commit()
     return "Query ok"
+
+
+@api.route("/api/get_percentage", methods=["POST"])
+def get_percentage():
+    user = get_current_user()
+    if user is None:
+        return "No user context"
+    subj_name = request.form["subj_name"]
+    number = request.form["number"]
+    subject = Subject.find_one({"name": subj_name})
+    tasktype = TaskType.find_one({"subject": subject.id, "number": str(number)})
+    return count_percentage_on_task(tasktype)
