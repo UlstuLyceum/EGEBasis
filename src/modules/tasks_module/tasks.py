@@ -95,7 +95,7 @@ def task_practice(subj_name, task_id):
                 "id": str(task.id),
                 "number": task_type.number,
                 "description": eval('"' + task.description + '"'),
-                "text": text,
+                "text": eval('"' + text + '"'),
                 "options": task.options,
                 "done": tl.done if tl else False,
                 "answers": task.answers,

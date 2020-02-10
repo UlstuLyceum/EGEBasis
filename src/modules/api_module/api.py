@@ -61,4 +61,4 @@ def get_percentage():
     number = request.form["number"]
     subject = Subject.find_one({"name": subj_name})
     tasktype = TaskType.find_one({"subject": subject.id, "number": str(number)})
-    return count_percentage_on_task(tasktype)
+    return str(count_percentage_on_task(tasktype))
