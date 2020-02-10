@@ -1,0 +1,38 @@
+{% extends "base2.html" %}
+
+{% block content %}
+    {% if current_subj == "russian" %}
+        <form action="{{ url_for('practice.results', subj_name=current_subj) }}" method="post">
+            <div class="test-practice-block">
+                {% for task in tasks %}
+                    <div class="test-practice-block__element">
+                        <div class="test-practice-block__element-info">
+                            <div class="test-practice-block__element-number">{{ task["number"] }}</div>
+                            <div class="test-practice-block__element-description">{{ task["description"] }}</div>
+                        </div>
+                        {% if task["text"] %}
+                            <div class="test-practice-block__element-text">{{ task["text"] }}</div>
+                        {% endif %}
+                        {% if task["options"] %}
+                            <div class="test-practice-block__element-options">
+                                {% for option in task["options"] %}
+                                    <div class="test-practice-block__element-option">{{ option }}</div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <input class="test-practice-block__element-input" name="task{{ task['number'] }}" placeholder="Ответ">
+                    </div>
+                {% endfor %}
+            </div>
+            <input class="test-end-button" type="submit" value="Завершить" onsubmit="countTime(this)">
+            <input name="time_counter" class="test-time-counter" type="text" value="0">
+        </form>
+        <script>
+            let intervalId = setInterval(() => {
+                $(".test-time-counter")[0].value++;
+            }, 1000);
+        </script>
+    {% else %}
+        <div class="coming-soon">Данный раздел пока находится в разработке!</div>
+    {% endif %}
+{% endblock %}

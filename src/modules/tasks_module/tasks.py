@@ -1,4 +1,4 @@
-from flask import Blueprint, url_for
+from flask import Blueprint, url_for, abort
 from werkzeug.utils import redirect
 
 from src.lib import (
@@ -12,11 +12,21 @@ from src.models import Subject, Task, TaskLink, TaskType
 tasks = Blueprint("tasks", __name__, template_folder="templates")
 
 
+@tasks.route("/<subj_name>")
+def subj_main(subj_name):
+    subject_list = list(Subject.find({"hidden": False}))
+    if subj_name not in [sub["name"] for sub in subject_list]:
+        abort(404)
+    return redirect(url_for("tasks.app_logged_in", subj_name=subj_name))
+
+
 @tasks.route("/<subj_name>/tasks")
 def app_logged_in(subj_name):
     if get_current_user() is None:
         return redirect(url_for("index"))
     subject_list = list(Subject.find({"hidden": False}))
+    if subj_name not in [sub["name"] for sub in subject_list]:
+        abort(404)
     subject = Subject.find_one({"name": subj_name})
     tasks_list = []
     raw_tasks = TaskType.find({"subject": subject.id})
@@ -46,6 +56,11 @@ def app_logged_in(subj_name):
 
 @tasks.route("/<subj_name>/task/<int:task_id>")
 def task_theory(subj_name, task_id):
+    user = get_current_user()
+    if user is None:
+        return redirect(url_for("index"))
+    if subj_name != "russian":
+        abort(404)
     subject_list = list(Subject.find({"hidden": False}))
     subject = Subject.find_one({"name": subj_name})
     task_type = TaskType.find_one({"subject": subject.id, "number": str(task_id)})
@@ -66,6 +81,8 @@ def task_theory(subj_name, task_id):
 def task_practice(subj_name, task_id):
     if get_current_user() is None:
         return redirect(url_for("index"))
+    if subj_name != "russian":
+        abort(404)
     user = get_current_user()
     subject = Subject.find_one({"name": subj_name})
     subject_list = list(Subject.find({"hidden": False}))

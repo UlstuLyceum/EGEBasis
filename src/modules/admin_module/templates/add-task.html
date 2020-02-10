@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Админ панель</title>
+</head>
+<body>
+    <h3>Добавление задания</h3>
+    {% if ok %}
+        <b>Задание добавлено</b>
+    {% endif %}
+    <form action="{{ url_for('admin.admin_main') }}" method="post">
+        <select required name="subject">
+            {% for subj in subjects %}
+                <option>{{ subj.label }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="task_type">Номер задания</label>
+        <input type="text" id="task_type" name="task_type" required>
+        <br>
+        <label for="description">Текст задания</label>
+        <textarea required name="description" id="description">
+
+        </textarea>
+        <br>
+        <label>Варианты ответа (ненужные оставьте пустыми)</label>
+        <input type="text" name="var1" placeholder="Ответ 1">
+        <br>
+        <input type="text" name="var2" placeholder="Ответ 2">
+        <br>
+        <input type="text" name="var3" placeholder="Ответ 3">
+        <br>
+        <input type="text" name="var4" placeholder="Ответ 4">
+        <br>
+        <input type="text" name="var5" placeholder="Ответ 5">
+        <br>
+        <label for="answers">Ответы(введите через запятую)</label>
+        <input type="text" id="answers" name="answers" placeholder="12,21" required>
+        <br>
+        <label for="explanation">Объяснение</label>
+        <textarea required id="explanation" name="explanation">
+
+        </textarea>
+        <br>
+        <input type="submit" value="Добавить">
+    </form>
+</body>
+</html>

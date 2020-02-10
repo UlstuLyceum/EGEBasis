@@ -33,17 +33,13 @@ def generate_confirm_code(email):
 
 def count_percentage_on_task(tasktype):
     user = get_current_user()
-    related_tasks = Task.find({"task_type": tasktype.id})
-    done_tasks = 0
-    for task in related_tasks:
-        done_tasks += TaskLink.find(
-            {"done": True, "task": task.id, "user": user.id}
-        ).count()
-    all_tasks = related_tasks.count()
-    if all_tasks == 0:
-        print("No tasks found for task type " + tasktype.number)
+    if tasktype.count_of_tasks == 0:
         return 0
-    return int(done_tasks / all_tasks * 100)
+    tasktypelink = TaskTypeLink.find_one({"task_type": tasktype.id, "user": user.id})
+    if tasktypelink is None:
+        return 0
+    percent = int(tasktypelink.done_tasks / tasktype.count_of_tasks * 100)
+    return percent if percent <= 100 else 100
 
 
 def get_status_on_task(tasktype):

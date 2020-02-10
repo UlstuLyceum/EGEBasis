@@ -26,13 +26,17 @@ from src.modules.auth_module.auth import auth
 from src.modules.tasks_module.tasks import tasks
 from src.modules.learn_module.learn import learn
 from src.modules.practice_module.practice import practice
+from src.modules.settings_module.settings import settings
 from src.modules.api_module.api import api
+from src.modules.admin_module.admin import admin
 
 app.register_blueprint(auth)
 app.register_blueprint(tasks)
 app.register_blueprint(learn)
 app.register_blueprint(practice)
+app.register_blueprint(settings)
 app.register_blueprint(api)
+app.register_blueprint(admin)
 
 
 @app.route("/")
@@ -41,3 +45,8 @@ def index():
     if user is None:
         return redirect(url_for("auth.login"))
     return redirect(url_for("tasks.app_logged_in", subj_name="russian"))
+
+
+@app.errorhandler(404)
+def not_found(e):
+    return render_template("404.html")

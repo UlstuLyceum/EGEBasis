@@ -11,55 +11,67 @@
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 </head>
 <body>
-<div class="test-creation-window">
-    <div class="test-creation-window-pointer"></div>
-    <form action="{{ url_for('practice.app_logged_in', subj_name=current_subj) }}" method="get" class="test-creation-window__content">
-        <div class="test-creation-window-label">Впишите номера заданий, которые хотите исключить:</div>
-        <input type="text" name="exclude" class="test-creation-window-input" placeholder="1 2 3 12">
-        <input type="submit" value="Начать" class="test-creation-window-button" onclick="createTest()">
-    </form>
+<div class="preloader__wrapper" style="z-index: 5; position: fixed; display: flex; justify-content: center; align-items: center; overflow: hidden; background-color: #fff; top: 0; left: 0; width: 100%; height: 100%; transition: ease 200ms;">
+    <img src="{{ url_for('static', filename='img/preloader.svg') }}" class="preloader">
 </div>
-<div class="base2-menu">
-    <div class="base2-aside {{ self._TemplateReference__context.name[:-5] }}-page-aside">
-        <div class="base2-aside__content">
-            <img class="base2-aside-logo" src="{{ url_for('static', filename='img/logo.png') }}">
-            <div class="base2-aside-controls">
-                <a id="tasks" class="base2-aside-controls__element_wrapper" href="{{ url_for('tasks.app_logged_in', subj_name=current_subj) }}">
-                    <img class="base2-aside-controls__element tasks" src="{{ url_for('static', filename='img/tasks_icon.png') }}">
-                </a>
-                <a id="learn" class="base2-aside-controls__element_wrapper" href="{{ url_for('learn.app_logged_in', subj_name=current_subj) }}">
-                    <img class="base2-aside-controls__element learn" src="{{ url_for('static', filename='img/read_icon.png') }}">
-                </a>
-                <a id="practice" class="base2-aside-controls__element_wrapper" href="{{ url_for('practice.app_logged_in', subj_name=current_subj) }}">
-                    <img class="base2-aside-controls__element practice" src="{{ url_for('static', filename='img/create_icon.png') }}">
-                </a>
-                <a id="settings" class="base2-aside-controls__element_wrapper" href="#">
-                    <img class="base2-aside-controls__element settings" src="{{ url_for('static', filename='img/settings_icon.png') }}">
+<div class="body-content" style="opacity: 0">
+    <div class="test-creation-window">
+        <div class="test-creation-window-pointer"></div>
+        <form action="{{ url_for('practice.app_logged_in', subj_name=current_subj) }}" method="get" class="test-creation-window__content">
+            <div class="test-creation-window-label">Впишите номера заданий, которые хотите исключить:</div>
+            <input type="text" name="exclude" class="test-creation-window-input" placeholder="1 2 3 12">
+            <input type="submit" value="Начать" class="test-creation-window-button" onclick="createTest()">
+        </form>
+    </div>
+    <div class="base2-menu">
+        <div class="base2-aside {{ self._TemplateReference__context.name[:-5] }}-page-aside">
+            <div class="base2-aside__content">
+                <img class="base2-aside-logo" src="{{ url_for('static', filename='img/logo.png') }}">
+                <div class="base2-aside-controls">
+                    <a id="tasks" class="base2-aside-controls__element_wrapper" href="{{ url_for('tasks.app_logged_in', subj_name=current_subj) }}">
+                        <img class="base2-aside-controls__element tasks" src="{{ url_for('static', filename='img/tasks_icon.png') }}">
+                    </a>
+                    <a id="learn" class="base2-aside-controls__element_wrapper" href="{{ url_for('learn.app_logged_in', subj_name=current_subj) }}">
+                        <img class="base2-aside-controls__element learn" src="{{ url_for('static', filename='img/read_icon.png') }}">
+                    </a>
+                    <a id="practice" class="base2-aside-controls__element_wrapper" href="{{ url_for('practice.app_logged_in', subj_name=current_subj) }}">
+                        <img class="base2-aside-controls__element practice" src="{{ url_for('static', filename='img/create_icon.png') }}">
+                    </a>
+                    <a id="settings" class="base2-aside-controls__element_wrapper" href="{{ url_for('settings.settings_page') }}">
+                        <img class="base2-aside-controls__element settings" src="{{ url_for('static', filename='img/settings_icon.png') }}">
+                    </a>
+                </div>
+                <a class="base2-aside-exit-button__wrapper" href="{{ url_for('auth.logout') }}">
+                    <img class="base2-aside-exit-button" src="{{ url_for('static', filename='img/exit_icon.png') }}">
                 </a>
             </div>
-            <a class="base2-aside-exit-button__wrapper" href="{{ url_for('auth.logout') }}">
-                <img class="base2-aside-exit-button" src="{{ url_for('static', filename='img/exit_icon.png') }}">
-            </a>
         </div>
     </div>
-</div>
-<div class="base2-header {{ self._TemplateReference__context.name[:-5] }}-page-header">
-    <div class="base2-header__content">
-        <div class="base2-header-label">{{ header_label }}</div>
-        <div class="base2-header-controls">
-            {% for sub in subject_list %}
-                {% if current_subj == sub["name"] %}
-                    <a href="/{{ sub['name'] }}/{{ current_mode }}" class="base2-header-controls__element active"> {{ sub["label"] }}</a>
-                {% else %}
-                    <a href="/{{ sub['name'] }}/{{ current_mode }}" class="base2-header-controls__element"> {{ sub["label"] }}</a>
-                {% endif %}
-            {% endfor %}
+    <div class="base2-header {{ self._TemplateReference__context.name[:-5] }}-page-header">
+        <div class="base2-header__content">
+            <div class="base2-header-label">{{ header_label }}</div>
+            <div class="base2-header-controls">
+                {% for sub in subject_list %}
+                    {% if current_subj == sub["name"] %}
+                        <a href="/{{ sub['name'] }}/{{ current_mode }}" class="base2-header-controls__element active"> {{ sub["label"] }}</a>
+                    {% else %}
+                        <a href="/{{ sub['name'] }}/{{ current_mode }}" class="base2-header-controls__element"> {{ sub["label"] }}</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
         </div>
     </div>
+    <div class="base2-content {{ self._TemplateReference__context.name[:-5] }}-page-content">{% block content %}{% endblock %}</div>
+    <div class="base2-footer {{ self._TemplateReference__context.name[:-5] }}-page-footer">{% block footer %}{% endblock %}</div>
 </div>
-<div class="base2-content {{ self._TemplateReference__context.name[:-5] }}-page-content">{% block content %}{% endblock %}</div>
-<div class="base2-footer {{ self._TemplateReference__context.name[:-5] }}-page-footer">{% block footer %}{% endblock %}</div>
 <script>
+    setTimeout(() => {
+        $(".body-content").css({"opacity": "1"});
+        $(".preloader__wrapper").css({"opacity": "0"});
+        setTimeout(() => {
+            $(".preloader__wrapper").css({"z-index": "-1"});
+        }, 200);
+    }, 300);
     $(document).on("scroll", () => {
         if ($(window).scrollTop() <= 60) {
             $(".base2-header").css({

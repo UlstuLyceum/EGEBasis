@@ -17,6 +17,8 @@ class User(Document):
     email = fields.EmailField(required=True, unique=True)
     password = fields.StringField()
     confirm_code = fields.StringField()
+    is_admin = fields.BooleanField(default=False)
+    is_math_basic = fields.BooleanField(default=True)
 
     class Meta:
         collection = db.user
@@ -37,6 +39,7 @@ class TaskType(Document):
     points = fields.IntegerField(required=True, default=1)
     cods = fields.ListField(fields.StringField)
     description = fields.StringField()
+    count_of_tasks = fields.IntegerField(default=0)
     subject = fields.ReferenceField(Subject)
 
 
@@ -54,7 +57,7 @@ class Task(Document):
     options = fields.ListField(fields.StringField)
     answers = fields.ListField(fields.StringField)
     explanation = fields.StringField()
-    text = fields.ReferenceField(Text)
+    text = fields.ReferenceField(Text, allow_none=True)
 
 
 @instance.register
@@ -63,6 +66,7 @@ class TaskTypeLink(Document):
     task_type = fields.ReferenceField(TaskType)
     user = fields.ReferenceField(User)
     status = fields.IntegerField(default=0)
+    done_tasks = fields.IntegerField(default=0)
 
 
 @instance.register
