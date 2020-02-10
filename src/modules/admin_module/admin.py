@@ -23,10 +23,7 @@ def admin_main():
         low = text.body
         if len(low) > 30:
             low = low[:30]
-        texts_list.append({
-            "id": str(text.id),
-            "low": low
-        })
+        texts_list.append({"id": str(text.id), "low": low})
     if request.method == "GET":
         return render("add-task.html", subjects=subjects, texts_list=texts_list)
     subject = Subject.find_one({"label": request.form["subject"]})
