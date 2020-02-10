@@ -21,6 +21,8 @@ def admin_main():
     task_type = TaskType.find_one(
         {"number": request.form["task_type"], "subject": subject.id}
     )
+    task_type.count_of_tasks += 1
+    task_type.commit()
     description = request.form["description"]
     var1 = request.form["var1"]
     var2 = request.form["var2"]
