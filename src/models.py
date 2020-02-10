@@ -39,6 +39,7 @@ class TaskType(Document):
     points = fields.IntegerField(required=True, default=1)
     cods = fields.ListField(fields.StringField)
     description = fields.StringField()
+    count_of_tasks = fields.IntegerField(default=0)
     subject = fields.ReferenceField(Subject)
 
 
@@ -65,6 +66,7 @@ class TaskTypeLink(Document):
     task_type = fields.ReferenceField(TaskType)
     user = fields.ReferenceField(User)
     status = fields.IntegerField(default=0)
+    done_tasks = fields.IntegerField(default=0)
 
 
 @instance.register

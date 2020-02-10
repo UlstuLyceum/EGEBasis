@@ -35,6 +35,18 @@ def task_done():
         return "No user context"
     task_id = request.form["task_id"]
     task = Task.find_one({"id": ObjectId(task_id)})
+    tasklink = TaskLink.find_one({"user": user.id, "task": task.id, "done": True})
+    if tasklink is not None:
+        return "Task already done"
+    tasktype = task.task_type.fetch()
+    tasktypelink = TaskTypeLink.find_one({"user": user.id, "task_type": tasktype.id})
+    if tasktypelink is not None:
+        tasktypelink.done_tasks += 1
+    else:
+        tasktypelink = TaskTypeLink(
+            task_type=tasktype, user=user, done_tasks=0, status=0
+        )
+    tasktypelink.commit()
     tasklink = TaskLink(user=user, task=task, done=True)
     tasklink.commit()
     return "Query ok"
