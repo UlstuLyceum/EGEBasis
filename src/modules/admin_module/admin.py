@@ -2,7 +2,7 @@ from bson.objectid import ObjectId
 from flask import Blueprint, request
 
 from src.lib import get_current_user, render
-from src.models import Subject, Task, TaskType
+from src.models import Subject, Task, TaskType, Text
 
 admin = Blueprint("admin", __name__, template_folder="templates")
 
@@ -15,8 +15,20 @@ def admin_main():
     if not user.is_admin:
         return render("access-denied.html")
     subjects = Subject.find({"hidden": False})
+    texts_list = [{"id": "5e4066a91c9d440000785ec1", "low": "Нет текста"}]
+    texts = Text.find()
+    for text in texts:
+        if str(text.id) == "5e4066a91c9d440000785ec1":
+            continue
+        low = text.body
+        if len(low) > 30:
+            low = low[:30]
+        texts_list.append({
+            "id": str(text.id),
+            "low": low
+        })
     if request.method == "GET":
-        return render("add-task.html", subjects=subjects)
+        return render("add-task.html", subjects=subjects, texts_list=texts_list)
     subject = Subject.find_one({"label": request.form["subject"]})
     task_type = TaskType.find_one(
         {"number": request.form["task_type"], "subject": subject.id}
@@ -42,13 +54,14 @@ def admin_main():
         options.append(var5)
     answers = request.form["answers"].replace(" ", "").split(",")
     explanation = request.form["explanation"]
+    text = request.form["text"]
     task = Task(
         task_type=task_type,
         description=description,
         options=options,
         answers=answers,
         explanation=explanation,
-        text=ObjectId("5e4066a91c9d440000785ec1"),
+        text=ObjectId(str(text)),
     )
     task.commit()
-    return render("add-task.html", subjects=subjects, ok=True)
+    return render("add-task.html", subjects=subjects, ok=True, texts_list=texts_list)

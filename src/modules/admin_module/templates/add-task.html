@@ -23,6 +23,7 @@
         <textarea required name="description" id="description"></textarea>
         <br>
         <label>Варианты ответа (ненужные оставьте пустыми)</label>
+        <br>
         <input type="text" name="var1" placeholder="Ответ 1">
         <br>
         <input type="text" name="var2" placeholder="Ответ 2">
@@ -38,6 +39,13 @@
         <br>
         <label for="explanation">Объяснение</label>
         <textarea required id="explanation" name="explanation"></textarea>
+        <br>
+        <label for="text">Выберите текст</label>
+        <select required name="text" id="text">
+            {% for text in texts_list %}
+                <option value="{{ text['id'] }}">{{ text["low"] }}</option>
+            {% endfor %}
+        </select>
         <br>
         <input type="submit" value="Добавить">
     </form>
