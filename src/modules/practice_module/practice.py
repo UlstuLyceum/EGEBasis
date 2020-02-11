@@ -96,7 +96,7 @@ def results(subj_name):
         title="Ответы на тест",
         header_label="Тест в формате ЕГЭ",
         current_subj=subj_name,
-        current_mode="tasks",
+        current_mode="practice",
         subject_list=subject_list,
         tasks=tasks,
         right=right,
