@@ -10,7 +10,7 @@
                             <div class="test-practice-block__element-number">{{ task["number"] }}</div>
                             <div class="test-practice-block__element-description">{{ task["description"] }}</div>
                         </div>
-                        {% if task["text"] %}
+                        {% if task["text"] and not task["number"] in ["23", "24", "25"]%}
                             <div class="test-practice-block__element-text">{{ task["text"]|safe }}</div>
                         {% endif %}
                         {% if task["options"] %}

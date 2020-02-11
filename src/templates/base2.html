@@ -69,7 +69,7 @@
     <div class="base2-content {{ self._TemplateReference__context.name[:-5] }}-page-content">{% block content %}{% endblock %}</div>
     <div class="base2-footer {{ self._TemplateReference__context.name[:-5] }}-page-footer">{% block footer %}{% endblock %}</div>
 </div>
-{% if current_mode != "tasks" or current_subj != "russian"%}
+{% if current_mode != "tasks" or current_subj != "russian" %}
     <script>
         setTimeout(() => {
             $(".body-content").css({"opacity": "1"});
