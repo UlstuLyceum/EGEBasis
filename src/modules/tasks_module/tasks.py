@@ -47,6 +47,7 @@ def app_logged_in(subj_name):
         current_mode="tasks",
         subject_list=subject_list,
         tasks_list=tasks_list,
+        task_list_length=len(tasks_list)
     )
 
 
@@ -65,7 +66,6 @@ def task_theory(subj_name, task_id):
         title="Задание",
         header_label="Теория по заданию",
         current_subj=subj_name,
-        current_mode="tasks",
         subject_list=subject_list,
         task_id=task_id,
         cods=list(task_type.cods),
@@ -107,7 +107,6 @@ def task_practice(subj_name, task_id):
         title="Задания",
         header_label="Практика задания",
         current_subj=subj_name,
-        current_mode="tasks",
         subject_list=subject_list,
         tasks=tasks,
     )
