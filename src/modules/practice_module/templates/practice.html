@@ -11,7 +11,7 @@
                             <div class="test-practice-block__element-description">{{ task["description"] }}</div>
                         </div>
                         {% if task["text"] %}
-                            <div class="test-practice-block__element-text">{{ task["text"] }}</div>
+                            <div class="test-practice-block__element-text">{{ task["text"]|safe }}</div>
                         {% endif %}
                         {% if task["options"] %}
                             <div class="test-practice-block__element-options">

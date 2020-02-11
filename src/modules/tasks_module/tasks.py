@@ -47,7 +47,7 @@ def app_logged_in(subj_name):
         current_mode="tasks",
         subject_list=subject_list,
         tasks_list=tasks_list,
-        task_list_length=len(tasks_list)
+        task_list_length=len(tasks_list),
     )
 
 
