@@ -26,7 +26,7 @@
         </div>
         <div class="all-tasks-block" data-subject-name="{{ current_subj }}">
             {% for task in tasks_list %}
-                <a class="task-block" href="{{ url_for('tasks.task_theory', subj_name=current_subj, task_id=task['number']) }}">
+                <a class="task-block" href="{{ url_for('tasks.task_theory', subj_name=current_subj, task_id=task['number']) }}" data-number="{{ task["number"] }}">
                     <div class="task-block-label">Задание {{ task["number"] }}</div>
                     <div class="task-block-progress">
                         <div class="task-block-progress-line__wrapper">
@@ -40,6 +40,34 @@
                 </a>
             {% endfor %}
         </div>
+        <div class="loader-progress" style="display: none">0</div>
+        <script>
+            $(".task-block").each(function() {
+                $.post("/api/get_percentage", {
+                    subj_name: "{{ current_subj }}",
+                    number: $(this).data("number")
+                }, (num) => {
+                    console.log($(this).find(".task-block-progress-shower"));
+                    console.log($(this).find(".task-block-progress-line-front"));
+                    $(this).find(".task-block-progress-shower")[0].innerHTML = num + "%";
+                    $(this).find(".task-block-progress-line-front").css({"width": num + "%"});
+                    $(".loader-progress")[0].innerHTML++;
+                });
+            });
+            $(".loader-progress").on("DOMSubtreeModified", () => {
+                if (parseInt($(".loader-progress")[0].innerHTML) === {{ task_list_length }}) {
+                    setTimeout(() => {
+                        $(".body-content").css({"opacity": "1"});
+                        $(".preloader__wrapper").css({"opacity": "0"});
+                        setTimeout(() => {
+                            $(".preloader__wrapper").css({"z-index": "-1"});
+                        }, 200);
+                        $("body").css({"overflow-y": "auto"});
+                        $("html").css({"overflow-y": "auto"});
+                    }, 300);
+                }
+            });
+        </script>
     {% else %}
         <div class="coming-soon">Данный раздел пока находится в разработке!</div>
     {% endif %}
