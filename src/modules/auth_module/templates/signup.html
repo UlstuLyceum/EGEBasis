@@ -10,7 +10,12 @@
 
 {% block content %}
 {% if user_exists %}
-    Ну типо пользователь с таким email существует
+    <div class="info-window" style="background-color: #f74a5a">Пользователь с таким email уже существует!</div>
+    <script>
+        setTimeout(() => {
+            $(".info-window").fadeOut(300);
+        }, 3000)
+    </script>
 {% endif %}
 <img class="signup-page-illustration" src="{{ url_for('static', filename='img/education_illustration.png') }}">
 <form action="{{ url_for("auth.signup") }}" method="post" class="signup-window__wrapper">
