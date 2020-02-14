@@ -121,7 +121,6 @@ $(document).on("click", (event) => {
 
 function createTest() {
     let numbers = $(".test-creation-window-input")[0].value.split(" ");
-    console.log(numbers);
 }
 
 $(document).on("click", (event) => {

@@ -10,10 +10,20 @@
 
 {% block content %}
 {% if error %}
-    Ошибка, нет такого пользователя и т. д.
+    <div align="center" class="info-window" style="background-color: #f74a5a">Произошла ошибка, проверьте введённые данные!</div>
+    <script>
+        setTimeout(() => {
+            $(".info-window").fadeOut(300);
+        }, 3000)
+    </script>
 {% endif %}
 {% if not_confirmed %}
-    Вы не подтвердили свою почту
+    <div class="info-window" style="background-color: #f74a5a">Подтвердите почту!</div>
+    <script>
+        setTimeout(() => {
+            $(".info-window").fadeOut(300);
+        }, 3000)
+    </script>
 {% endif %}
 <img class="login-page-illustration" src="{{ url_for('static', filename='img/education_illustration.png') }}">
 <form action="{{ url_for("auth.login") }}" method="post" class="login-window__wrapper">
