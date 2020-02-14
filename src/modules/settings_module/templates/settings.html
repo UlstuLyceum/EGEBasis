@@ -2,10 +2,20 @@
 
 {% block content %}
     {% if bad_password %}
-        Вы ввели неверный пароль
+    <div class="info-window" style="background-color: #f74a5a">Указан неверный пароль!</div>
+    <script>
+        setTimeout(() => {
+            $(".info-window").fadeOut(300);
+        }, 3000)
+    </script>
     {% endif %}
     {% if ok %}
-        Настройки успешно изменены
+    <div class="info-window" style="background-color: #2ecc71">Настройки успешно изменены!</div>
+    <script>
+        setTimeout(() => {
+            $(".info-window").fadeOut(300);
+        }, 3000)
+    </script>
     {% endif %}
     <form action="{{ url_for('settings.settings_page') }}" method="post">
         <div class="settings-change-password-block">
