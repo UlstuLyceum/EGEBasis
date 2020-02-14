@@ -2,6 +2,7 @@
 <html lang="ru" class="{{ self._TemplateReference__context.name[:-5] }}-html">
 <head>
     <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/reset.css') }}">
     <title>{{ title }}</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
@@ -9,6 +10,7 @@
     <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
 </head>
 <body>
+<div class="mobile-warning">Мобильная версия сайта находится в разработке!</div>
 <div class="preloader__wrapper" style="z-index: 5; position: fixed; display: flex; justify-content: center; align-items: center; overflow: hidden; background-color: #fff; top: 0; left: 0; width: 100%; height: 100%; transition: ease 200ms;">
     <img src="{{ url_for('static', filename='img/preloader.svg') }}" class="preloader">
 </div>

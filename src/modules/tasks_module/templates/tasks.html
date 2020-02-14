@@ -47,8 +47,6 @@
                     subj_name: "{{ current_subj }}",
                     number: $(this).data("number")
                 }, (num) => {
-                    console.log($(this).find(".task-block-progress-shower"));
-                    console.log($(this).find(".task-block-progress-line-front"));
                     $(this).find(".task-block-progress-shower")[0].innerHTML = num + "%";
                     $(this).find(".task-block-progress-line-front").css({"width": num + "%"});
                     $(".loader-progress")[0].innerHTML++;

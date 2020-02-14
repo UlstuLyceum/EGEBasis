@@ -11,6 +11,28 @@ a, button, input {
 body {
     transition: ease 300ms;
 }
+.mobile-warning {
+    display: none;
+}
+@media only screen and (max-width: 850px){
+    .mobile-warning {
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 7vw;
+        text-align: center;
+        z-index: 10;
+        background-color: #fff;
+        width: calc(100% - 100px);
+        height: 100%;
+        overflow: hidden;
+        padding: 50px;
+    }
+}
+.login-html {
+    overflow: hidden;
+}
 .login-page-header, .signup-page-header, .finishSignup-page-header {
     display: flex;
     justify-content: space-between;
@@ -48,7 +70,12 @@ body {
     z-index: -2;
     left: 0;
     position: absolute;
-    width: 800px;
+    width: 60%;
+}
+@media screen and (min-width: 1600px) {
+    .login-page-illustration, .signup-page-illustration {
+        width: 65%;
+    }
 }
 .login-window__wrapper {
     z-index: -1;
@@ -70,6 +97,11 @@ body {
     padding: 35px 50px;
     margin: 0 50px 0 0;
 }
+@media screen and (min-width: 1920px) {
+    .login-window {
+        padding: 50px 100px;
+    }
+}
 .login-window-label__wrapper {
     display: flex;
     width: 100%;
@@ -85,6 +117,11 @@ body {
     justify-content: center;
     align-items: center;
     margin: 50px 0 0 0;
+}
+@media screen and (min-width: 1920px) {
+    .login-window__content {
+        margin: 100px 0 0 0;
+    }
 }
 .login-window-form {
     display: flex;
@@ -155,6 +192,11 @@ body {
     width: 100%;
     margin: 50px 0 0 0;
 }
+@media screen and (min-width: 1920px) {
+    .login-window-controls {
+        margin: 100px 0 0 0;
+    }
+}
 .login-window-login-button {
     text-decoration: none;
     transition: ease 300ms;
@@ -193,6 +235,17 @@ body {
     padding: 35px 50px;
     margin: 0 50px 0 0;
 }
+@media screen and (min-width: 1920px) {
+    .signup-window {
+        background-color: #25252d;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        border-radius: 25px;
+        padding: 50px 100px;
+    }
+}
 .signup-window-label__wrapper {
     display: flex;
     width: 100%;
@@ -208,6 +261,11 @@ body {
     justify-content: center;
     align-items: center;
     margin: 50px 0 0 0;
+}
+@media screen and (min-width: 1920px) {
+    .signup-window__content {
+        margin: 100px 0 0 0;
+    }
 }
 .signup-window-form {
     display: flex;
@@ -249,6 +307,11 @@ body {
 .signup-window-continue-button:hover, .signup-window-end-signup-button:hover {
     color: #955bff;
     background-color: #fff;
+}
+@media screen and (min-width: 1920px) {
+    .signup-window-continue-button, .signup-window-end-signup-button {
+        margin: 100px 0 0 0;
+    }
 }
 .signup-window-form.login-form {
     margin: 15px 0 0 0;
@@ -390,7 +453,17 @@ body {
     width: 30px;
 }
 .base2-aside-controls__element_wrapper {
-    margin: 20px;
+    margin: 20px 0;
+}
+@media screen and (min-width: 1600px){
+    .base2-aside-controls__element_wrapper {
+        margin: 30px 0;
+    }
+}
+@media screen and (min-width: 1920px){
+    .base2-aside-controls__element_wrapper {
+        margin: 50px 0;
+    }
 }
 .base2-aside-controls__element, .base2-aside-exit-button {
     transition: ease 300ms;
