@@ -20,7 +20,7 @@
                         </div>
                     {% endif %}
                     <div class="task-practice-block__element-controls">
-                        <input class="task-practice-block__element-input" placeholder="Ответ">
+                        <input class="task-practice-block__element-input" placeholder="Ответ (в формате: слово, дваслова, 1, 123)">
                         <div class="task-practice-block__element-check-button" data-answers="{{ " ".join(task["answers"]) }}" data-id="{{ task["id"] }}" onclick="checkTaskAnswer(this)">Проверить</div>
                         <div class="task-practice-block__element-show-answer-button" onclick="showTaskAnswer(this)">Показать ответ</div>
                     </div>
