@@ -30,8 +30,15 @@ def login():
             session["email"] = email
             session["password"] = password
             return redirect(url_for("index"))
-        return render("login.html", title="Войти", msg="Подтвердите почту!", msg_color="#f74a5a")
-    return render("login.html", title="Войти", msg="Произошла ошибка, проверьте введённые данные!", msg_color="#f74a5a")
+        return render(
+            "login.html", title="Войти", msg="Подтвердите почту!", msg_color="#f74a5a"
+        )
+    return render(
+        "login.html",
+        title="Войти",
+        msg="Произошла ошибка, проверьте введённые данные!",
+        msg_color="#f74a5a",
+    )
 
 
 @auth.route("/logout")
@@ -49,7 +56,11 @@ def signup():
     email = request.form["email"]
     password = request.form["password"]
     if User.find_one({"email": email}) is not None:
-        return render("signup.html", title="Зарегистрироваться", error_msg="Пользователь с таким email уже существует!")
+        return render(
+            "signup.html",
+            title="Зарегистрироваться",
+            error_msg="Пользователь с таким email уже существует!",
+        )
     confirm_code = generate_confirm_code(email)
     user = User(
         name=name,
@@ -85,7 +96,12 @@ def reset():
     email = request.form["reestablishEmail"]
     user = User.find_one({"email": email})
     if user is None:
-        return render("login.html", title="Войти", msg="Пользователя с таким e-mail не существует!", msg_color="#f74a5a")
+        return render(
+            "login.html",
+            title="Войти",
+            msg="Пользователя с таким e-mail не существует!",
+            msg_color="#f74a5a",
+        )
     confirm_code = generate_confirm_code(email + str(random.randint(0, 10000)))
     user.reset_code = confirm_code
     user.commit()
@@ -98,16 +114,24 @@ def reset():
         + url_for("auth.reset_finish", confirm_code=confirm_code)[1:],
     )
     mail.send(msg)
-    return render("login.html", title="Войти", msg="Ссылка на восстановление была успешно отправлена!",
-                  msg_color="#01cd6c")
+    return render(
+        "login.html",
+        title="Войти",
+        msg="Ссылка на восстановление была успешно отправлена!",
+        msg_color="#01cd6c",
+    )
 
 
 @auth.route("/reset/<confirm_code>", methods=["GET", "POST"])
 def reset_finish(confirm_code):
     user = User.find_one({"reset_code": confirm_code})
     if user is None:
-        return render("login.html", title="Войти", msg="Ссылка на восстановление пароля недействителена!",
-                      msg_color="#f74a5a")
+        return render(
+            "login.html",
+            title="Войти",
+            msg="Ссылка на восстановление пароля недействителена!",
+            msg_color="#f74a5a",
+        )
     if request.method == "GET":
         return render("acceptReset.html", confirm_code=confirm_code)
     password = request.form["password"]
