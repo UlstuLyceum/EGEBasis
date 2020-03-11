@@ -22,7 +22,12 @@ def login():
     if request.method == "GET":
         success_on_creation = request.args.get("success")
         if success_on_creation:
-            return render("login.html", title="Войти", msg="Аккаунт успешно создан!", msg_color="#01cd6c")
+            return render(
+                "login.html",
+                title="Войти",
+                msg="Аккаунт успешно создан!",
+                msg_color="#01cd6c",
+            )
         else:
             return render("login.html", title="Войти")
     email = request.form["email"]
