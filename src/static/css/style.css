@@ -50,22 +50,22 @@ body {
 .login-html {
     overflow: hidden;
 }
-.login-page-header, .signup-page-header, .finishSignup-page-header {
+.login-page-header, .signup-page-header, .finishSignup-page-header, .acceptReset-page-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 25px 50px 0 50px;
 }
-.login-page-info, .signup-page-info, .finishSignup-page-info {
+.login-page-info, .signup-page-info, .finishSignup-page-info, .acceptReset-page-info {
     display: flex;
     align-items: center;
 }
-.login-page-info .slogan, .signup-page-info .slogan, .finishSignup-page-info .slogan {
+.login-page-info .slogan, .signup-page-info .slogan, .finishSignup-page-info .slogan, .acceptReset-page-info .slogan {
     font-size: 17px;
     font-weight: 500;
     margin: 0 0 0 50px;
 }
-.login-page-content, .signup-page-content, .finishSignup-page-content {
+.login-page-content, .signup-page-content, .finishSignup-page-content, .acceptReset-page-content {
     display: flex;
     justify-content: center;
 }
@@ -381,6 +381,8 @@ body {
 .password-reestablish-window-button {
     cursor: pointer;
     transition: ease 300ms;
+    outline: none;
+    border: none;
     color: #fff;
     display: flex;
     justify-content: center;

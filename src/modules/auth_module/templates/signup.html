@@ -9,8 +9,8 @@
 {% endblock %}
 
 {% block content %}
-{% if user_exists %}
-    <div class="info-window" style="background-color: #f74a5a">Пользователь с таким email уже существует!</div>
+{% if error_msg %}
+    <div class="info-window" style="background-color: #f74a5a">{{ error_msg }}</div>
     <script>
         setTimeout(() => {
             $(".info-window").fadeOut(300);

@@ -9,16 +9,8 @@
 {% endblock %}
 
 {% block content %}
-{% if error %}
-    <div align="center" class="info-window" style="background-color: #f74a5a">Произошла ошибка, проверьте введённые данные!</div>
-    <script>
-        setTimeout(() => {
-            $(".info-window").fadeOut(300);
-        }, 3000)
-    </script>
-{% endif %}
-{% if not_confirmed %}
-    <div class="info-window" style="background-color: #f74a5a">Подтвердите почту!</div>
+{% if msg %}
+    <div align="center" class="info-window" style="background-color: {{ msg_color }}">{{ msg }}</div>
     <script>
         setTimeout(() => {
             $(".info-window").fadeOut(300);
@@ -37,7 +29,7 @@
                 <input class="login-window-form-input login-form" type="text" name="email" placeholder="Email">
             </div>
             <div class="login-window-form password-form">
-                <img class="login-window-form-icon" src="static/img/password_icon.png">
+                <img class="login-window-form-icon" src="{{ url_for('static', filename='img/password_icon.png') }}">
                 <input class="login-window-form-input" type="password" name="password" placeholder="Пароль">
             </div>
             <div class="login-via-networks__wrapper">
