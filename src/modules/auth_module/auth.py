@@ -1,6 +1,7 @@
 from flask import Blueprint, request, session, url_for
 from flask_mail import Message
 from werkzeug.utils import redirect
+import random
 
 from src.init import mail
 from src.lib import generate_confirm_code, get_current_user, hash_password, render
@@ -77,3 +78,41 @@ def confirm(confirm_code):
     user.confirm_code = ""
     user.commit()
     return redirect(url_for("auth.login"))
+
+
+@auth.route("/reset", methods=["POST"])
+def reset():
+    email = request.form["reestablishEmail"]
+    user = User.find_one({"email": email})
+    if user is None:
+        return "Пользователя с таким email не существует"
+    confirm_code = generate_confirm_code(email + str(random.randint(0, 10000)))
+    user.reset_code = confirm_code
+    user.commit()
+    msg = Message(
+        subject="Восстановление пароля",
+        sender=config.MAIL_DEFAULT_SENDER,
+        recipients=[email],
+        body="Ваша ссылка для подтверждения: "
+        + config.APP_URL
+        + url_for("auth.reset_finish", confirm_code=confirm_code)[1:],
+    )
+    mail.send(msg)
+    return "Ссылка отправлена на почту"
+
+
+@auth.route("/reset/<confirm_code>", methods=["GET", "POST"])
+def reset_finish(confirm_code):
+    user = User.find_one({"reset_code": confirm_code})
+    if user is None:
+        return "Код на восстановление пароля недействителен"
+    if request.method == "GET":
+        return render("acceptReset.html", confirm_code=confirm_code)
+    password = request.form["password"]
+    rpassword = request.form["rpassword"]
+    if password != rpassword:
+        return "Несовпадающие пароли"
+    user.password = hash_password(password)
+    user.confirm_code = ""
+    user.commit()
+    return redirect(url_for("index"))

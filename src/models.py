@@ -17,6 +17,7 @@ class User(Document):
     email = fields.EmailField(required=True, unique=True)
     password = fields.StringField()
     confirm_code = fields.StringField()
+    reset_code = fields.StringField(default="")
     is_admin = fields.BooleanField(default=False)
     is_math_basic = fields.BooleanField(default=True)
 
