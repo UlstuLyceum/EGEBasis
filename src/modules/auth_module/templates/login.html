@@ -55,12 +55,12 @@
         </div>
     </div>
 </form>
-<div class="password-reestablish-window__wrapper prwe">
+<form action="{{ url_for('auth.reset') }}" method="post" class="password-reestablish-window__wrapper prwe">
     <div class="password-reestablish-window prwe">
         <p class="password-reestablish-window-text prwe">Введите e-mail адрес, который вы указали при регистрации, либо тот, к которому привязана соц-сеть через которую вы авторизовались и нажмите отправить.<br><br>Далее следуйте инструкциям в письме, которое придёт на указанную почту.</p>
         <input class="password-reestablish-window-email-form prwe" type="email" name="reestablishEmail" placeholder="Email">
         <div class="password-reestablish-window-button prwe" onclick="sendReestablishEmail()">Отправить</div>
     </div>
     <div class="password-reestablish-window-pointer prwe"></div>
-</div>
+</form>
 {% endblock %}
