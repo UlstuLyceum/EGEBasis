@@ -20,7 +20,16 @@ def login():
     if get_current_user() is not None:
         return redirect(url_for("index"))
     if request.method == "GET":
-        return render("login.html", title="Войти", msg="", msg_color="")
+        success_on_creation = request.args.get("success")
+        if success_on_creation:
+            return render(
+                "login.html",
+                title="Войти",
+                msg="Аккаунт успешно создан!",
+                msg_color="#01cd6c",
+            )
+        else:
+            return render("login.html", title="Войти")
     email = request.form["email"]
     raw_password = request.form["password"]
     password = hash_password(raw_password)
@@ -88,7 +97,7 @@ def confirm(confirm_code):
         return redirect(url_for("index"))
     user.confirm_code = ""
     user.commit()
-    return redirect(url_for("auth.login"))
+    return redirect(url_for("auth.login", success=True))
 
 
 @auth.route("/reset", methods=["POST"])
